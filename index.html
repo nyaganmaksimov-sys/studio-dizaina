@@ -183,7 +183,7 @@
         }
 
         header.scrolled {
-            background: rgba(10, 10, 10, 0.9);
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
             padding: 20px 0;
         }
@@ -201,6 +201,7 @@
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            z-index: 1001;
         }
 
         .nav-links {
@@ -229,6 +230,104 @@
 
         .nav-links a:hover:after {
             width: 100%;
+        }
+
+        /* Гамбургер меню */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: var(--light);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Мобильное меню */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--dark);
+            z-index: 999;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 40px 40px;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            text-align: center;
+            width: 100%;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 30px;
+        }
+
+        .mobile-nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            transition: var(--transition);
+            display: block;
+            padding: 10px 0;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--primary);
+            transform: translateX(10px);
+        }
+
+        .mobile-contact {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .mobile-contact a {
+            color: var(--text-gray);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .mobile-contact a:hover {
+            color: var(--primary);
         }
 
         /* Hero Section */
@@ -894,6 +993,10 @@
                 display: none;
             }
             
+            .hamburger {
+                display: flex;
+            }
+            
             .hero-btns, .contact-buttons, .calculator-actions {
                 flex-direction: column;
                 align-items: center;
@@ -911,9 +1014,31 @@
             .contact-info {
                 grid-template-columns: 1fr;
             }
+            
+            .process-timeline:before {
+                left: 25px;
+            }
+            
+            .process-step {
+                gap: 25px;
+            }
+            
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
             .slider-item {
                 height: 280px;
             }
@@ -932,6 +1057,40 @@
             
             .calculator-content {
                 max-height: 350px;
+            }
+            
+            .calculator-summary {
+                padding: 20px;
+            }
+            
+            .calculator-actions {
+                flex-direction: column;
+            }
+            
+            .service-card {
+                padding: 30px 25px;
+            }
+            
+            .hero-title {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .process-timeline:before {
+                left: 20px;
+            }
+            
+            .process-step {
+                gap: 20px;
+            }
+            
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
             }
         }
 
@@ -975,7 +1134,7 @@
     <!-- Header -->
     <header id="header">
         <div class="container header-container">
-            <a href="#" class="logo">MAXIMOV.design</a>
+            <a href="#" class="logo">Студия Дизайна Павла Максимова</a>
             <ul class="nav-links">
                 <li><a href="#home">ГЛАВНАЯ</a></li>
                 <li><a href="#about">ОБО МНЕ</a></li>
@@ -985,8 +1144,32 @@
                 <li><a href="#process">ПРОЦЕСС</a></li>
                 <li><a href="#contact">КОНТАКТЫ</a></li>
             </ul>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-nav-links">
+            <li><a href="#home">ГЛАВНАЯ</a></li>
+            <li><a href="#about">ОБО МНЕ</a></li>
+            <li><a href="#services">УСЛУГИ</a></li>
+            <li><a href="#portfolio">ПОРТФОЛИО</a></li>
+            <li><a href="#calculator">КАЛЬКУЛЯТОР</a></li>
+            <li><a href="#process">ПРОЦЕСС</a></li>
+            <li><a href="#contact">КОНТАКТЫ</a></li>
+        </ul>
+        <div class="mobile-contact">
+            <a href="tel:+79825120178">+7 (982) 512 01-78</a>
+            <a href="mailto:3333347@bk.ru">3333347@bk.ru</a>
+            <a href="https://t.me/maxpa1985" target="_blank">Telegram</a>
+            <a href="https://vk.com/maximovpa" target="_blank">VK</a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -1771,6 +1954,25 @@
             } else {
                 header.classList.remove('scrolled');
             }
+        });
+
+        // Гамбургер меню
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
         });
 
         // Scroll animations
