@@ -373,44 +373,57 @@
         .portfolio-slider {
             position: relative;
             margin: 0 auto;
-            max-width: 1200px;
         }
 
         .slider-item {
             position: relative;
             border-radius: var(--border-radius);
             overflow: hidden;
-            margin: 0 15px;
+            margin: 0 10px;
             background: var(--dark-gray);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            height: 350px;
+        }
+
+        .slider-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
         }
 
         .slider-image {
             width: 100%;
-            height: 500px;
+            height: 200px;
             object-fit: cover;
             transition: var(--transition);
         }
 
         .slider-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 40px;
-            background: linear-gradient(transparent, rgba(10, 10, 10, 0.95));
-            transform: translateY(10px);
-            opacity: 0;
-            transition: var(--transition);
+            padding: 25px;
+            background: var(--dark-gray);
         }
 
-        .slider-item:hover .slider-content {
-            transform: translateY(0);
-            opacity: 1;
+        .slider-content h3 {
+            color: var(--light);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
         }
 
-        .slider-item:hover .slider-image {
-            transform: scale(1.05);
+        .slider-content p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .project-category {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--dark);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
         }
 
         .slider-nav {
@@ -421,8 +434,8 @@
         }
 
         .slider-btn {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: var(--dark-gray);
             border: 2px solid var(--primary);
@@ -441,7 +454,7 @@
         }
 
         .slick-dots {
-            bottom: -60px;
+            bottom: -50px;
         }
 
         .slick-dots li button:before {
@@ -453,6 +466,19 @@
         .slick-dots li.slick-active button:before {
             color: var(--primary);
             opacity: 1;
+        }
+
+        .slick-track {
+            display: flex !important;
+            gap: 0;
+        }
+
+        .slick-slide {
+            height: inherit !important;
+        }
+
+        .slick-slide > div {
+            height: 100%;
         }
 
         /* Process Section */
@@ -635,14 +661,24 @@
         }
 
         /* Responsive */
+        @media (max-width: 1200px) {
+            .portfolio-slider .slick-slide {
+                margin: 0 8px;
+            }
+        }
+
         @media (max-width: 1024px) {
             .about-container {
                 grid-template-columns: 1fr;
                 gap: 50px;
             }
             
-            .slider-image {
-                height: 400px;
+            .slider-item {
+                height: 320px;
+            }
+            
+            .portfolio-slider .slick-slide {
+                margin: 0 5px;
             }
         }
 
@@ -672,12 +708,35 @@
                 grid-template-columns: 1fr;
             }
             
-            .slider-image {
+            .slider-item {
                 height: 300px;
+                margin: 0 5px;
             }
             
             .contact-info {
                 grid-template-columns: 1fr;
+            }
+            
+            .portfolio-slider .slick-slide {
+                margin: 0 3px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slider-item {
+                height: 280px;
+            }
+            
+            .slider-content {
+                padding: 15px;
+            }
+            
+            .slider-content h3 {
+                font-size: 1rem;
+            }
+            
+            .slider-content p {
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -798,44 +857,154 @@
         <div class="container">
             <h2 class="syne text-center fade-in">ИЗБРАННЫЕ ПРОЕКТЫ</h2>
             <div class="portfolio-slider fade-in">
-                <!-- Слайд 1 -->
+                <!-- Работа 1 -->
                 <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1634942537034-2531766767d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                    <img src="https://images.unsplash.com/photo-1634942537034-2531766767d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
                          alt="Фирменный стиль" class="slider-image">
                     <div class="slider-content">
+                        <span class="project-category">Брендинг</span>
                         <h3>REVOLUTION COFFEE</h3>
                         <p>Полный фирменный стиль для сети кофеен</p>
-                        <p>Логотип, брендбук, упаковка, мерч</p>
                     </div>
                 </div>
-                <!-- Слайд 2 -->
+                <!-- Работа 2 -->
                 <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                    <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
                          alt="Полиграфия" class="slider-image">
                     <div class="slider-content">
+                        <span class="project-category">Полиграфия</span>
                         <h3>LAW & INNOVATION</h3>
-                        <p>Полиграфия для юридической фирмы</p>
-                        <p>Визитки, буклеты, бланки, презентации</p>
+                        <p>Визитки и буклеты для юридической фирмы</p>
                     </div>
                 </div>
-                <!-- Слайд 3 -->
+                <!-- Работа 3 -->
                 <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                    <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
                          alt="Сайт на Tilda" class="slider-image">
                     <div class="slider-content">
+                        <span class="project-category">Веб-дизайн</span>
                         <h3>DIGITAL FUTURE</h3>
                         <p>Корпоративный сайт на Tilda</p>
-                        <p>Дизайн, разработка, наполнение контентом</p>
                     </div>
                 </div>
-                <!-- Слайд 4 -->
+                <!-- Работа 4 -->
                 <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
                          alt="Брендинг" class="slider-image">
                     <div class="slider-content">
+                        <span class="project-category">Брендинг</span>
                         <h3>URBAN STYLE</h3>
                         <p>Брендинг для модного буткика</p>
-                        <p>Айдентика, упаковка, рекламные материалы</p>
+                    </div>
+                </div>
+                <!-- Работа 5 -->
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="Упаковка" class="slider-image">
+                    <div class="slider-content">
+                        <span class="project-category">Упаковка</span>
+                        <h3>ORGANIC FOOD</h3>
+                        <p>Дизайн упаковки для органических продуктов</p>
+                    </div>
+                </div>
+                <!-- Работа 6 -->
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1587334986756-f87de7f9bd2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="Логотип" class="slider-image">
+                    <div class="slider-content">
+                        <span class="project-category">Логотип</span>
+                        <h3>TECH SOLUTIONS</h3>
+                        <p>Разработка логотипа для IT компании</p>
+                    </div>
+                </div>
+                <!-- Работа 7 -->
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="Презентация" class="slider-image">
+                    <div class="slider-content">
+                        <span class="project-category">Презентация</span>
+                        <h3>STARTUP PITCH</h3>
+                        <p>Дизайн презентации для инвесторов</p>
+                    </div>
+                </div>
+                <!-- Работа 8 -->
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="Мерч" class="slider-image">
+                    <div class="slider-content">
+                        <span class="project-category">Мерч</span>
+                        <h3>CREATIVE STUDIO</h3>
+                        <p>Фирменный мерч для дизайн-студии</p>
+                    </div>
+                </div>
+                <!-- Работа 9 -->
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1565689228866-1f6a7ae89ab5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="Буклет" class="slider-image">
+                    <div class="slider-content">
+                        <span class="project-category">Полиграфия</span>
+                        <h3>MEDICAL CENTER</h3>
+                        <p>Информационный буклет для медцентра</p>
+                    </div>
+                </div>
+                <!-- Работа 10 -->
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="Айдентика" class="slider-image">
+                    <div class="slider-content">
+                        <span class="project-category">Айдентика</span>
+                        <h3>FITNESS CLUB</h3>
+                        <p>Айдентика для фитнес-клуба премиум класса</p>
+                    </div>
+                </div>
+                <!-- Работа 11 -->
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="Сайт" class="slider-image">
+                    <div class="slider-content">
+                        <span class="project-category">Веб-дизайн</span>
+                        <h3>ECO MARKET</h3>
+                        <p>Интернет-магазин на Tilda</p>
+                    </div>
+                </div>
+                <!-- Работа 12 -->
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="Брендбук" class="slider-image">
+                    <div class="slider-content">
+                        <span class="project-category">Брендбук</span>
+                        <h3>FASHION BRAND</h3>
+                        <p>Разработка брендбука для модного дома</p>
+                    </div>
+                </div>
+                <!-- Работа 13 -->
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1587334986756-f87de7f9bd2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="Афиша" class="slider-image">
+                    <div class="slider-content">
+                        <span class="project-category">Афиша</span>
+                        <h3>MUSIC FESTIVAL</h3>
+                        <p>Серия афиш для музыкального фестиваля</p>
+                    </div>
+                </div>
+                <!-- Работа 14 -->
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="Лендинг" class="slider-image">
+                    <div class="slider-content">
+                        <span class="project-category">Лендинг</span>
+                        <h3>MOBILE APP</h3>
+                        <p>Лендинг для мобильного приложения</p>
+                    </div>
+                </div>
+                <!-- Работа 15 -->
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="Соцсети" class="slider-image">
+                    <div class="slider-content">
+                        <span class="project-category">Соцсети</span>
+                        <h3>BEAUTY SALON</h3>
+                        <p>Оформление соцсетей для салона красоты</p>
                     </div>
                 </div>
             </div>
@@ -1030,12 +1199,34 @@
                 arrows: false,
                 infinite: true,
                 speed: 500,
-                slidesToShow: 1,
+                slidesToShow: 4,
                 slidesToScroll: 1,
                 autoplay: true,
-                autoplaySpeed: 4000,
-                fade: true,
-                cssEase: 'cubic-bezier(0.25, 1, 0.5, 1)'
+                autoplaySpeed: 3000,
+                cssEase: 'cubic-bezier(0.25, 1, 0.5, 1)',
+                responsive: [
+                    {
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
             });
 
             // Custom navigation
