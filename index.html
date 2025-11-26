@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Графический дизайнер | 20 лет опыта | Фирменный стиль & Tilda</title>
-    <meta name="description" content="Креативный графический дизайнер с 20-летним опытом. Создаю смелые визуальные решения, фирменные стили и сайты на Tilda.">
+    <title>Студия Дизайна Павла Максимова | Графический дизайнер с 20-летним опытом</title>
+    <meta name="description" content="Студия Дизайна Павла Максимова. Креативный графический дизайнер с 20-летним опытом. Создаю смелые визуальные решения, фирменные стили и сайты на Tilda.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -469,52 +469,42 @@
             margin: 0 auto;
         }
 
-        .calculator-steps {
+        .calculator-tabs {
             display: flex;
-            gap: 20px;
-            margin-bottom: 40px;
+            gap: 10px;
+            margin-bottom: 30px;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .calculator-step {
-            flex: 1;
-            min-width: 200px;
+        .calculator-tab {
             background: var(--dark);
-            padding: 25px;
-            border-radius: var(--border-radius);
+            padding: 15px 25px;
+            border-radius: 50px;
             border: 2px solid transparent;
             transition: var(--transition);
             cursor: pointer;
             text-align: center;
+            font-weight: 500;
+            font-size: 0.9rem;
         }
 
-        .calculator-step.active {
+        .calculator-tab.active {
             border-color: var(--primary);
             background: rgba(255, 77, 128, 0.1);
         }
 
-        .calculator-step:hover {
+        .calculator-tab:hover {
             border-color: var(--primary);
-        }
-
-        .step-number {
-            width: 40px;
-            height: 40px;
-            background: var(--primary);
-            color: var(--dark);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            margin: 0 auto 15px;
         }
 
         .calculator-content {
             background: var(--dark);
-            padding: 40px;
+            padding: 30px;
             border-radius: var(--border-radius);
             margin-bottom: 30px;
+            max-height: 500px;
+            overflow-y: auto;
         }
 
         .category-section {
@@ -525,14 +515,26 @@
             display: block;
         }
 
+        .service-category {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .service-category h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
         .service-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
             background: var(--dark-gray);
             border-radius: var(--border-radius);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: var(--transition);
         }
@@ -549,37 +551,39 @@
             font-weight: 600;
             margin-bottom: 5px;
             color: var(--light);
+            font-size: 0.95rem;
         }
 
         .service-description {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--text-gray);
         }
 
         .service-controls {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
         }
 
         .complexity-select {
             background: var(--dark);
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: var(--light);
-            padding: 8px 15px;
+            padding: 6px 12px;
             border-radius: 25px;
-            min-width: 120px;
+            min-width: 100px;
+            font-size: 0.85rem;
         }
 
         .quantity-control {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .quantity-btn {
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
             background: var(--primary);
             border: none;
             border-radius: 50%;
@@ -587,6 +591,7 @@
             font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
+            font-size: 0.8rem;
         }
 
         .quantity-btn:hover {
@@ -594,25 +599,27 @@
         }
 
         .quantity-input {
-            width: 50px;
+            width: 40px;
             background: var(--dark);
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: var(--light);
             text-align: center;
-            padding: 5px;
+            padding: 4px;
             border-radius: 5px;
+            font-size: 0.85rem;
         }
 
         .service-price {
             font-weight: 700;
             color: var(--primary);
-            min-width: 80px;
+            min-width: 70px;
             text-align: right;
+            font-size: 0.9rem;
         }
 
         .calculator-summary {
             background: var(--dark);
-            padding: 30px;
+            padding: 25px;
             border-radius: var(--border-radius);
             border: 2px solid var(--primary);
         }
@@ -621,30 +628,30 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 12px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .summary-item:last-child {
             border-bottom: none;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--primary);
         }
 
         .summary-total {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--primary);
             text-align: center;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .calculator-actions {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
-            margin-top: 30px;
+            margin-top: 25px;
         }
 
         /* Process Section */
@@ -839,12 +846,14 @@
                 gap: 50px;
             }
             
-            .calculator-steps {
+            .calculator-tabs {
                 flex-direction: column;
+                align-items: center;
             }
             
-            .calculator-step {
-                min-width: auto;
+            .calculator-tab {
+                width: 100%;
+                max-width: 300px;
             }
             
             .slider-item {
@@ -867,12 +876,13 @@
             
             .calculator-content {
                 padding: 20px;
+                max-height: 400px;
             }
             
             .service-item {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 15px;
+                gap: 12px;
             }
             
             .service-controls {
@@ -919,6 +929,10 @@
             .slider-content p {
                 font-size: 0.8rem;
             }
+            
+            .calculator-content {
+                max-height: 350px;
+            }
         }
 
         /* Slick slider styles */
@@ -961,7 +975,7 @@
     <!-- Header -->
     <header id="header">
         <div class="container header-container">
-            <a href="#" class="logo">DESIGN_VISIONARY</a>
+            <a href="#" class="logo">Студия Дизайна Павла Максимова</a>
             <ul class="nav-links">
                 <li><a href="#home">ГЛАВНАЯ</a></li>
                 <li><a href="#about">ОБО МНЕ</a></li>
@@ -1009,7 +1023,7 @@
         <div class="container about-container">
             <div class="about-image">
                 <div class="image-frame">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Дизайнер">
+                    <img src="images/1764146690.png" alt="Павел Максимов">
                 </div>
                 <div class="floating-element"></div>
             </div>
@@ -1089,150 +1103,233 @@
     <section class="calculator" id="calculator">
         <div class="container calculator-container">
             <h2 class="syne text-center fade-in">КАЛЬКУЛЯТОР СТОИМОСТИ</h2>
-            <p class="text-center fade-in" style="margin-bottom: 50px;">Выберите нужные услуги и рассчитайте стоимость вашего проекта</p>
+            <p class="text-center fade-in" style="margin-bottom: 30px;">Выберите нужные услуги и рассчитайте стоимость вашего проекта</p>
             
-            <div class="calculator-steps fade-in">
-                <div class="calculator-step active" data-step="1">
-                    <div class="step-number">1</div>
-                    <h4>Фирменный стиль</h4>
-                </div>
-                <div class="calculator-step" data-step="2">
-                    <div class="step-number">2</div>
-                    <h4>Полиграфия</h4>
-                </div>
-                <div class="calculator-step" data-step="3">
-                    <div class="step-number">3</div>
-                    <h4>Сайты</h4>
-                </div>
-                <div class="calculator-step" data-step="4">
-                    <div class="step-number">4</div>
-                    <h4>Дополнительно</h4>
-                </div>
+            <div class="calculator-tabs fade-in">
+                <div class="calculator-tab active" data-tab="branding">Фирменный стиль</div>
+                <div class="calculator-tab" data-tab="polygraphy">Полиграфия</div>
+                <div class="calculator-tab" data-tab="websites">Сайты</div>
+                <div class="calculator-tab" data-tab="additional">Дополнительно</div>
             </div>
 
             <div class="calculator-content">
-                <!-- Step 1: Фирменный стиль -->
+                <!-- Tab 1: Фирменный стиль -->
                 <div class="category-section active" data-category="branding">
-                    <div class="service-item" data-service="logo" data-prices='{"simple":5000,"medium":10000,"complex":15000}'>
-                        <div class="service-info">
-                            <div class="service-name">Разработка логотипа</div>
-                            <div class="service-description">Создание уникального логотипа для вашего бренда</div>
-                        </div>
-                        <div class="service-controls">
-                            <select class="complexity-select">
-                                <option value="simple">Простой</option>
-                                <option value="medium">Средний</option>
-                                <option value="complex">Сложный</option>
-                            </select>
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus">-</button>
-                                <input type="number" class="quantity-input" value="1" min="1">
-                                <button class="quantity-btn plus">+</button>
+                    <div class="service-category">
+                        <h4>Логотипы</h4>
+                        <div class="service-item" data-service="logo" data-prices='{"simple":5000,"medium":10000,"complex":15000}'>
+                            <div class="service-info">
+                                <div class="service-name">Разработка логотипа</div>
+                                <div class="service-description">Создание уникального логотипа для вашего бренда</div>
                             </div>
-                            <div class="service-price">5 000 ₽</div>
+                            <div class="service-controls">
+                                <select class="complexity-select">
+                                    <option value="simple">Простой</option>
+                                    <option value="medium">Средний</option>
+                                    <option value="complex">Сложный</option>
+                                </select>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus">-</button>
+                                    <input type="number" class="quantity-input" value="0" min="0">
+                                    <button class="quantity-btn plus">+</button>
+                                </div>
+                                <div class="service-price">5 000 ₽</div>
+                            </div>
+                        </div>
+
+                        <div class="service-item" data-service="vector" data-prices='{"simple":800,"medium":1200,"complex":2000}'>
+                            <div class="service-info">
+                                <div class="service-name">Отрисовка логотипа</div>
+                                <div class="service-description">Восстановление в векторный формат</div>
+                            </div>
+                            <div class="service-controls">
+                                <select class="complexity-select">
+                                    <option value="simple">Простой</option>
+                                    <option value="medium">Средний</option>
+                                    <option value="complex">Сложный</option>
+                                </select>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus">-</button>
+                                    <input type="number" class="quantity-input" value="0" min="0">
+                                    <button class="quantity-btn plus">+</button>
+                                </div>
+                                <div class="service-price">800 ₽</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="service-item" data-service="vector" data-prices='{"simple":800,"medium":1200,"complex":2000}'>
-                        <div class="service-info">
-                            <div class="service-name">Отрисовка логотипа</div>
-                            <div class="service-description">Восстановление в векторный формат</div>
-                        </div>
-                        <div class="service-controls">
-                            <select class="complexity-select">
-                                <option value="simple">Простой</option>
-                                <option value="medium">Средний</option>
-                                <option value="complex">Сложный</option>
-                            </select>
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus">-</button>
-                                <input type="number" class="quantity-input" value="1" min="1">
-                                <button class="quantity-btn plus">+</button>
+                    <div class="service-category">
+                        <h4>Элементы фирменного стиля</h4>
+                        <div class="service-item" data-service="letterhead" data-prices='{"simple":300,"medium":400,"complex":500}'>
+                            <div class="service-info">
+                                <div class="service-name">Фирменный бланк</div>
+                                <div class="service-description">Дизайн фирменного бланка</div>
                             </div>
-                            <div class="service-price">800 ₽</div>
+                            <div class="service-controls">
+                                <select class="complexity-select">
+                                    <option value="simple">Простой</option>
+                                    <option value="medium">Средний</option>
+                                    <option value="complex">Сложный</option>
+                                </select>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus">-</button>
+                                    <input type="number" class="quantity-input" value="0" min="0">
+                                    <button class="quantity-btn plus">+</button>
+                                </div>
+                                <div class="service-price">300 ₽</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="service-item" data-service="guideline" data-price="25000">
-                        <div class="service-info">
-                            <div class="service-name">Гайдлайн по фирменному стилю</div>
-                            <div class="service-description">Руководство по использованию фирменного стиля</div>
-                        </div>
-                        <div class="service-controls">
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus">-</button>
-                                <input type="number" class="quantity-input" value="0" min="0">
-                                <button class="quantity-btn plus">+</button>
+                        <div class="service-item" data-service="folder" data-prices='{"simple":800,"medium":1200,"complex":1600}'>
+                            <div class="service-info">
+                                <div class="service-name">Папка для документов А4</div>
+                                <div class="service-description">Дизайн папки для документов</div>
                             </div>
-                            <div class="service-price">25 000 ₽</div>
+                            <div class="service-controls">
+                                <select class="complexity-select">
+                                    <option value="simple">Простой</option>
+                                    <option value="medium">Средний</option>
+                                    <option value="complex">Сложный</option>
+                                </select>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus">-</button>
+                                    <input type="number" class="quantity-input" value="0" min="0">
+                                    <button class="quantity-btn plus">+</button>
+                                </div>
+                                <div class="service-price">800 ₽</div>
+                            </div>
+                        </div>
+
+                        <div class="service-item" data-service="guideline" data-price="25000">
+                            <div class="service-info">
+                                <div class="service-name">Гайдлайн по фирменному стилю</div>
+                                <div class="service-description">Руководство по использованию фирменного стиля</div>
+                            </div>
+                            <div class="service-controls">
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus">-</button>
+                                    <input type="number" class="quantity-input" value="0" min="0">
+                                    <button class="quantity-btn plus">+</button>
+                                </div>
+                                <div class="service-price">25 000 ₽</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Step 2: Полиграфия -->
+                <!-- Tab 2: Полиграфия -->
                 <div class="category-section" data-category="polygraphy">
-                    <div class="service-item" data-service="business-card" data-prices='{"simple":400,"medium":600,"complex":800}'>
-                        <div class="service-info">
-                            <div class="service-name">Визитка односторонняя</div>
-                            <div class="service-description">90х50 мм, 4+0</div>
-                        </div>
-                        <div class="service-controls">
-                            <select class="complexity-select">
-                                <option value="simple">Простой</option>
-                                <option value="medium">Средний</option>
-                                <option value="complex">Сложный</option>
-                            </select>
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus">-</button>
-                                <input type="number" class="quantity-input" value="0" min="0">
-                                <button class="quantity-btn plus">+</button>
+                    <div class="service-category">
+                        <h4>Визитки</h4>
+                        <div class="service-item" data-service="business-card-single" data-prices='{"simple":400,"medium":600,"complex":800}'>
+                            <div class="service-info">
+                                <div class="service-name">Визитка односторонняя</div>
+                                <div class="service-description">90х50 мм, 4+0</div>
                             </div>
-                            <div class="service-price">400 ₽</div>
+                            <div class="service-controls">
+                                <select class="complexity-select">
+                                    <option value="simple">Простой</option>
+                                    <option value="medium">Средний</option>
+                                    <option value="complex">Сложный</option>
+                                </select>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus">-</button>
+                                    <input type="number" class="quantity-input" value="0" min="0">
+                                    <button class="quantity-btn plus">+</button>
+                                </div>
+                                <div class="service-price">400 ₽</div>
+                            </div>
+                        </div>
+
+                        <div class="service-item" data-service="business-card-double" data-prices='{"simple":600,"medium":800,"complex":1000}'>
+                            <div class="service-info">
+                                <div class="service-name">Визитка двусторонняя</div>
+                                <div class="service-description">90х50 мм, 4+4</div>
+                            </div>
+                            <div class="service-controls">
+                                <select class="complexity-select">
+                                    <option value="simple">Простой</option>
+                                    <option value="medium">Средний</option>
+                                    <option value="complex">Сложный</option>
+                                </select>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus">-</button>
+                                    <input type="number" class="quantity-input" value="0" min="0">
+                                    <button class="quantity-btn plus">+</button>
+                                </div>
+                                <div class="service-price">600 ₽</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="service-item" data-service="flyer-a4" data-prices='{"simple":1500,"medium":1800,"complex":2000}'>
-                        <div class="service-info">
-                            <div class="service-name">Листовка А4 односторонняя</div>
-                            <div class="service-description">4+0</div>
-                        </div>
-                        <div class="service-controls">
-                            <select class="complexity-select">
-                                <option value="simple">Простой</option>
-                                <option value="medium">Средний</option>
-                                <option value="complex">Сложный</option>
-                            </select>
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus">-</button>
-                                <input type="number" class="quantity-input" value="0" min="0">
-                                <button class="quantity-btn plus">+</button>
+                    <div class="service-category">
+                        <h4>Листовки</h4>
+                        <div class="service-item" data-service="flyer-a6-single" data-prices='{"simple":600,"medium":800,"complex":1000}'>
+                            <div class="service-info">
+                                <div class="service-name">Листовка А6 односторонняя</div>
+                                <div class="service-description">4+0</div>
                             </div>
-                            <div class="service-price">1 500 ₽</div>
+                            <div class="service-controls">
+                                <select class="complexity-select">
+                                    <option value="simple">Простой</option>
+                                    <option value="medium">Средний</option>
+                                    <option value="complex">Сложный</option>
+                                </select>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus">-</button>
+                                    <input type="number" class="quantity-input" value="0" min="0">
+                                    <button class="quantity-btn plus">+</button>
+                                </div>
+                                <div class="service-price">600 ₽</div>
+                            </div>
+                        </div>
+
+                        <div class="service-item" data-service="flyer-a4-single" data-prices='{"simple":1500,"medium":1800,"complex":2000}'>
+                            <div class="service-info">
+                                <div class="service-name">Листовка А4 односторонняя</div>
+                                <div class="service-description">4+0</div>
+                            </div>
+                            <div class="service-controls">
+                                <select class="complexity-select">
+                                    <option value="simple">Простой</option>
+                                    <option value="medium">Средний</option>
+                                    <option value="complex">Сложный</option>
+                                </select>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus">-</button>
+                                    <input type="number" class="quantity-input" value="0" min="0">
+                                    <button class="quantity-btn plus">+</button>
+                                </div>
+                                <div class="service-price">1 500 ₽</div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="service-item" data-service="booklet" data-prices='{"simple":1500,"medium":2000,"complex":2500}'>
-                        <div class="service-info">
-                            <div class="service-name">Буклет А5/А4</div>
-                            <div class="service-description">4+4, 1 фальц</div>
-                        </div>
-                        <div class="service-controls">
-                            <select class="complexity-select">
-                                <option value="simple">Простой</option>
-                                <option value="medium">Средний</option>
-                                <option value="complex">Сложный</option>
-                            </select>
-                            <div class="quantity-control">
-                                <button class="quantity-btn minus">-</button>
-                                <input type="number" class="quantity-input" value="0" min="0">
-                                <button class="quantity-btn plus">+</button>
+                    <div class="service-category">
+                        <h4>Буклеты</h4>
+                        <div class="service-item" data-service="booklet" data-prices='{"simple":1500,"medium":2000,"complex":2500}'>
+                            <div class="service-info">
+                                <div class="service-name">Буклет А5/А4</div>
+                                <div class="service-description">4+4, 1 фальц</div>
                             </div>
-                            <div class="service-price">1 500 ₽</div>
+                            <div class="service-controls">
+                                <select class="complexity-select">
+                                    <option value="simple">Простой</option>
+                                    <option value="medium">Средний</option>
+                                    <option value="complex">Сложный</option>
+                                </select>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus">-</button>
+                                    <input type="number" class="quantity-input" value="0" min="0">
+                                    <button class="quantity-btn plus">-</button>
+                                </div>
+                                <div class="service-price">1 500 ₽</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Step 3: Сайты -->
+                <!-- Tab 3: Сайты -->
                 <div class="category-section" data-category="websites">
                     <div class="service-item" data-service="landing" data-price="10000">
                         <div class="service-info">
@@ -1280,7 +1377,7 @@
                     </div>
                 </div>
 
-                <!-- Step 4: Дополнительно -->
+                <!-- Tab 4: Дополнительно -->
                 <div class="category-section" data-category="additional">
                     <div class="service-item" data-service="rush" data-percentage="25">
                         <div class="service-info">
@@ -1309,11 +1406,26 @@
                             <div class="service-price">+25%</div>
                         </div>
                     </div>
+
+                    <div class="service-item" data-service="correction" data-price="150">
+                        <div class="service-info">
+                            <div class="service-name">Дополнительная правка макета</div>
+                            <div class="service-description">Каждая последующая правка</div>
+                        </div>
+                        <div class="service-controls">
+                            <div class="quantity-control">
+                                <button class="quantity-btn minus">-</button>
+                                <input type="number" class="quantity-input" value="0" min="0">
+                                <button class="quantity-btn plus">+</button>
+                            </div>
+                            <div class="service-price">150 ₽</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="calculator-summary fade-in">
-                <h3 class="text-center" style="margin-bottom: 30px;">ИТОГО</h3>
+                <h3 class="text-center" style="margin-bottom: 20px;">ИТОГО</h3>
                 <div class="summary-item">
                     <span>Стоимость услуг:</span>
                     <span id="subtotal">0 ₽</span>
@@ -1393,7 +1505,7 @@
                 <div class="contact-item fade-in">
                     <div class="contact-icon"><i class="fas fa-phone"></i></div>
                     <h3>Телефон</h3>
-                    <a href="tel:+79863333347">+7 (986) 333-33-47</a>
+                    <a href="tel:+79825120178">+7 (982) 512 01-78</a>
                 </div>
                 <div class="contact-item fade-in">
                     <div class="contact-icon"><i class="fas fa-envelope"></i></div>
@@ -1410,11 +1522,6 @@
                     <h3>VK</h3>
                     <a href="https://vk.com/maximovpa" target="_blank">vk.com/maximovpa</a>
                 </div>
-                <div class="contact-item fade-in">
-                    <div class="contact-icon"><i class="fas fa-comment"></i></div>
-                    <h3>Мессенджер MAX</h3>
-                    <a href="tel:+79863333347">+7 (986) 333-33-47</a>
-                </div>
             </div>
 
             <div class="contact-buttons">
@@ -1426,7 +1533,7 @@
                     <span>НАПИСАТЬ В TELEGRAM</span>
                     <i class="fab fa-telegram"></i>
                 </a>
-                <a href="tel:+79863333347" class="btn btn-secondary fade-in">
+                <a href="tel:+79825120178" class="btn btn-secondary fade-in">
                     <span>ПОЗВОНИТЬ</span>
                     <i class="fas fa-phone"></i>
                 </a>
@@ -1436,7 +1543,7 @@
                 <a href="https://vk.com/maximovpa" target="_blank" class="social-link"><i class="fab fa-vk"></i></a>
                 <a href="https://t.me/maxpa1985" target="_blank" class="social-link"><i class="fab fa-telegram"></i></a>
                 <a href="mailto:3333347@bk.ru" class="social-link"><i class="fas fa-envelope"></i></a>
-                <a href="tel:+79863333347" class="social-link"><i class="fas fa-phone"></i></a>
+                <a href="tel:+79825120178" class="social-link"><i class="fas fa-phone"></i></a>
             </div>
         </div>
     </section>
@@ -1444,7 +1551,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="logo" style="font-size: 2rem; margin-bottom: 30px;">DESIGN_VISIONARY</div>
+            <div class="logo" style="font-size: 2rem; margin-bottom: 30px;">Студия Дизайна Павла Максимова</div>
             <div class="footer-links">
                 <a href="#home">Главная</a>
                 <a href="#about">Обо мне</a>
@@ -1455,8 +1562,8 @@
                 <a href="#contact">Контакты</a>
             </div>
             <div class="copyright">
-                <p>© 2024 DESIGN_VISIONARY. Все права защищены. Создано с ⚡ и страстью к дизайну</p>
-                <p style="margin-top: 10px;">Телефон: +7 (986) 333-33-47 | Email: 3333347@bk.ru</p>
+                <p>© 2024 Студия Дизайна Павла Максимова. Все права защищены. Создано с ⚡ и страстью к дизайну</p>
+                <p style="margin-top: 10px;">Телефон: +7 (982) 512 01-78 | Email: 3333347@bk.ru</p>
             </div>
         </div>
     </footer>
@@ -1475,10 +1582,10 @@
             }
 
             initEventListeners() {
-                // Step navigation
-                document.querySelectorAll('.calculator-step').forEach(step => {
-                    step.addEventListener('click', () => {
-                        this.switchStep(step.dataset.step);
+                // Tab navigation
+                document.querySelectorAll('.calculator-tab').forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        this.switchTab(tab.dataset.tab);
                     });
                 });
 
@@ -1530,28 +1637,18 @@
                 });
             }
 
-            switchStep(stepNumber) {
-                // Update active step
-                document.querySelectorAll('.calculator-step').forEach(step => {
-                    step.classList.remove('active');
+            switchTab(tabName) {
+                // Update active tab
+                document.querySelectorAll('.calculator-tab').forEach(tab => {
+                    tab.classList.remove('active');
                 });
-                document.querySelector(`[data-step="${stepNumber}"]`).classList.add('active');
+                document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
 
                 // Update active category
                 document.querySelectorAll('.category-section').forEach(section => {
                     section.classList.remove('active');
                 });
-                document.querySelector(`[data-category="${this.getCategoryByStep(stepNumber)}"]`).classList.add('active');
-            }
-
-            getCategoryByStep(step) {
-                const categories = {
-                    '1': 'branding',
-                    '2': 'polygraphy', 
-                    '3': 'websites',
-                    '4': 'additional'
-                };
-                return categories[step];
+                document.querySelector(`[data-category="${tabName}"]`).classList.add('active');
             }
 
             updateService(serviceItem) {
@@ -1614,6 +1711,9 @@
                 const extraVersions = parseInt(document.querySelector('[data-service="extra-version"] .quantity-input').value);
                 additionalCost += subtotal * 0.25 * extraVersions;
 
+                const corrections = parseInt(document.querySelector('[data-service="correction"] .quantity-input').value);
+                additionalCost += 150 * corrections;
+
                 const total = subtotal + additionalCost;
 
                 // Update display
@@ -1634,16 +1734,17 @@
                 
                 // Reset all inputs
                 document.querySelectorAll('.quantity-input').forEach(input => {
-                    if (input.type === 'number') {
-                        input.value = input.closest('.service-item').dataset.service === 'logo' ? 1 : 0;
-                    } else if (input.type === 'checkbox') {
-                        input.checked = false;
-                    }
+                    input.value = 0;
                 });
                 
                 // Reset complexity selects
                 document.querySelectorAll('.complexity-select').forEach(select => {
                     select.value = 'simple';
+                });
+                
+                // Reset checkboxes
+                document.querySelectorAll('.rush-checkbox').forEach(checkbox => {
+                    checkbox.checked = false;
                 });
                 
                 // Reset prices display
