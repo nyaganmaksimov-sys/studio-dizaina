@@ -38,6 +38,189 @@
             line-height: 1.5;
         }
 
+        /* Улучшенный анимированный фон с яркими переливами */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .gradient-orbs {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 77, 128, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 240, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 209, 102, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 60% 90%, rgba(255, 77, 128, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 90% 60%, rgba(0, 240, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 10% 30%, rgba(255, 209, 102, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 30% 10%, rgba(255, 77, 128, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(0, 240, 255, 0.08) 0%, transparent 50%);
+            background-size: 200% 200%;
+            animation: gradientOrbits 25s ease-in-out infinite;
+        }
+
+        @keyframes gradientOrbits {
+            0%, 100% { 
+                background-position: 0% 0%, 100% 100%, 50% 50%, 80% 20%, 20% 80%, 10% 90%, 90% 10%, 70% 30%;
+            }
+            20% { 
+                background-position: 100% 0%, 0% 100%, 25% 75%, 60% 40%, 40% 60%, 30% 70%, 70% 30%, 90% 10%;
+            }
+            40% { 
+                background-position: 100% 100%, 0% 0%, 75% 25%, 20% 80%, 80% 20%, 50% 50%, 10% 90%, 30% 70%;
+            }
+            60% { 
+                background-position: 0% 100%, 100% 0%, 25% 25%, 40% 60%, 60% 40%, 70% 30%, 30% 70%, 10% 90%;
+            }
+            80% { 
+                background-position: 0% 0%, 100% 100%, 75% 75%, 80% 20%, 20% 80%, 90% 10%, 10% 90%, 50% 50%;
+            }
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0.15;
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(45deg, var(--primary), rgba(255, 77, 128, 0.7));
+            top: 10%;
+            left: 5%;
+            animation: floatShape1 25s infinite;
+        }
+
+        .shape-2 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--secondary), rgba(0, 240, 255, 0.7));
+            top: 60%;
+            right: 10%;
+            animation: floatShape2 30s infinite;
+        }
+
+        .shape-3 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(225deg, var(--accent), rgba(255, 209, 102, 0.7));
+            bottom: 10%;
+            left: 20%;
+            animation: floatShape3 35s infinite;
+        }
+
+        .shape-4 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            top: 20%;
+            right: 20%;
+            animation: floatShape4 40s infinite;
+            opacity: 0.12;
+        }
+
+        .shape-5 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(180deg, var(--secondary), var(--accent));
+            bottom: 30%;
+            right: 5%;
+            animation: floatShape5 45s infinite;
+            opacity: 0.1;
+        }
+
+        @keyframes floatShape1 {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% { 
+                transform: translate(50px, 80px) rotate(90deg);
+            }
+            50% { 
+                transform: translate(20px, 150px) rotate(180deg);
+            }
+            75% { 
+                transform: translate(-30px, 100px) rotate(270deg);
+            }
+        }
+
+        @keyframes floatShape2 {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% { 
+                transform: translate(-60px, 40px) rotate(90deg);
+            }
+            50% { 
+                transform: translate(-100px, -20px) rotate(180deg);
+            }
+            75% { 
+                transform: translate(40px, -80px) rotate(270deg);
+            }
+        }
+
+        @keyframes floatShape3 {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% { 
+                transform: translate(80px, -40px) rotate(120deg);
+            }
+            66% { 
+                transform: translate(-60px, 100px) rotate(240deg);
+            }
+        }
+
+        @keyframes floatShape4 {
+            0%, 100% { 
+                transform: translate(0, 0) scale(1);
+            }
+            25% { 
+                transform: translate(-40px, 60px) scale(1.1);
+            }
+            50% { 
+                transform: translate(60px, -30px) scale(0.9);
+            }
+            75% { 
+                transform: translate(-20px, -60px) scale(1.05);
+            }
+        }
+
+        @keyframes floatShape5 {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg);
+            }
+            20% { 
+                transform: translate(70px, 20px) rotate(72deg);
+            }
+            40% { 
+                transform: translate(-50px, 80px) rotate(144deg);
+            }
+            60% { 
+                transform: translate(30px, -60px) rotate(216deg);
+            }
+            80% { 
+                transform: translate(-80px, -30px) rotate(288deg);
+            }
+        }
+
+        /* Остальные стили остаются без изменений */
         .syne {
             font-family: 'Syne', sans-serif;
         }
@@ -113,129 +296,6 @@
         .btn-secondary:hover {
             background: var(--light);
             color: var(--dark);
-        }
-
-        /* Улучшенный анимированный фон */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .gradient-orbs {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 77, 128, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 240, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 209, 102, 0.05) 0%, transparent 50%);
-            background-size: 200% 200%;
-            animation: gradientOrbits 20s ease-in-out infinite;
-        }
-
-        @keyframes gradientOrbits {
-            0%, 100% { 
-                background-position: 0% 0%, 100% 100%, 50% 50%;
-            }
-            25% { 
-                background-position: 100% 0%, 0% 100%, 25% 75%;
-            }
-            50% { 
-                background-position: 100% 100%, 0% 0%, 75% 25%;
-            }
-            75% { 
-                background-position: 0% 100%, 100% 0%, 25% 25%;
-            }
-        }
-
-        .floating-shapes {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .floating-shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .shape-1 {
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(45deg, var(--primary), transparent);
-            top: 10%;
-            left: 5%;
-            animation: floatShape1 25s infinite;
-            opacity: 0.1;
-        }
-
-        .shape-2 {
-            width: 350px;
-            height: 350px;
-            background: linear-gradient(135deg, var(--secondary), transparent);
-            top: 60%;
-            right: 10%;
-            animation: floatShape2 30s infinite;
-            opacity: 0.1;
-        }
-
-        .shape-3 {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(225deg, var(--accent), transparent);
-            bottom: 10%;
-            left: 20%;
-            animation: floatShape3 35s infinite;
-            opacity: 0.08;
-        }
-
-        @keyframes floatShape1 {
-            0%, 100% { 
-                transform: translate(0, 0) rotate(0deg);
-            }
-            25% { 
-                transform: translate(50px, 80px) rotate(90deg);
-            }
-            50% { 
-                transform: translate(20px, 150px) rotate(180deg);
-            }
-            75% { 
-                transform: translate(-30px, 100px) rotate(270deg);
-            }
-        }
-
-        @keyframes floatShape2 {
-            0%, 100% { 
-                transform: translate(0, 0) rotate(0deg);
-            }
-            25% { 
-                transform: translate(-60px, 40px) rotate(90deg);
-            }
-            50% { 
-                transform: translate(-100px, -20px) rotate(180deg);
-            }
-            75% { 
-                transform: translate(40px, -80px) rotate(270deg);
-            }
-        }
-
-        @keyframes floatShape3 {
-            0%, 100% { 
-                transform: translate(0, 0) rotate(0deg);
-            }
-            33% { 
-                transform: translate(80px, -40px) rotate(120deg);
-            }
-            66% { 
-                transform: translate(-60px, 100px) rotate(240deg);
-            }
         }
 
         /* Header */
@@ -1189,13 +1249,15 @@
     </style>
 </head>
 <body>
-    <!-- Улучшенный анимированный фон -->
+    <!-- Улучшенный анимированный фон с яркими переливами -->
     <div class="animated-bg">
         <div class="gradient-orbs"></div>
         <div class="floating-shapes">
             <div class="floating-shape shape-1"></div>
             <div class="floating-shape shape-2"></div>
             <div class="floating-shape shape-3"></div>
+            <div class="floating-shape shape-4"></div>
+            <div class="floating-shape shape-5"></div>
         </div>
     </div>
 
