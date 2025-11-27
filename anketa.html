@@ -9,7 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -780,16 +781,48 @@
             transform: translateY(0);
         }
 
-        /* Скрытый контейнер для PDF */
-        #pdf-container {
-            position: absolute;
-            left: -9999px;
-            top: -9999px;
+        /* Стили для PDF */
+        .pdf-template {
+            position: fixed;
+            top: -10000px;
+            left: -10000px;
             width: 800px;
             background: white;
             color: black;
-            padding: 30px;
+            padding: 40px;
             font-family: Arial, sans-serif;
+            z-index: 10000;
+        }
+
+        .pdf-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #FF4D80;
+            padding-bottom: 20px;
+        }
+
+        .pdf-section {
+            margin-bottom: 25px;
+            page-break-inside: avoid;
+        }
+
+        .pdf-section-title {
+            color: #00F0FF;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #00F0FF;
+            padding-bottom: 8px;
+        }
+
+        .pdf-field {
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .pdf-label {
+            font-weight: bold;
+            color: #333;
         }
 
         /* Responsive */
@@ -1189,9 +1222,6 @@
         </div>
     </footer>
 
-    <!-- Скрытый контейнер для PDF -->
-    <div id="pdf-container"></div>
-
     <!-- Scripts -->
     <script>
         // Header scroll effect
@@ -1282,64 +1312,95 @@
                 .map(cb => cb.nextElementSibling.textContent).join(', ');
             
             // Создание HTML для PDF
-            const pdfContent = `
-                <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; color: #000;">
-                    <h1 style="color: #FF4D80; text-align: center; margin-bottom: 30px; font-size: 24px;">АНКЕТА ЗАКАЗЧИКА DIZMAX</h1>
+            const pdfHTML = `
+                <div class="pdf-template" id="pdf-template">
+                    <div class="pdf-header">
+                        <h1 style="color: #FF4D80; margin-bottom: 10px;">АНКЕТА ЗАКАЗЧИКА DIZMAX</h1>
+                        <p style="color: #666;">Заполнена: ${new Date().toLocaleDateString('ru-RU')}</p>
+                    </div>
                     
-                    <h2 style="color: #00F0FF; border-bottom: 2px solid #00F0FF; padding-bottom: 10px; font-size: 18px;">КОНТАКТНАЯ ИНФОРМАЦИЯ</h2>
-                    <p><strong>Имя:</strong> ${document.getElementById('name').value}</p>
-                    <p><strong>Компания/Бренд:</strong> ${document.getElementById('company').value || 'Не указано'}</p>
-                    <p><strong>Email:</strong> ${document.getElementById('email').value}</p>
-                    <p><strong>Телефон:</strong> ${document.getElementById('phone').value}</p>
-                    <p><strong>Предпочтительный способ связи:</strong> ${document.getElementById('contact-method').options[document.getElementById('contact-method').selectedIndex].text}</p>
+                    <div class="pdf-section">
+                        <div class="pdf-section-title">КОНТАКТНАЯ ИНФОРМАЦИЯ</div>
+                        <div class="pdf-field"><span class="pdf-label">Имя:</span> ${document.getElementById('name').value}</div>
+                        <div class="pdf-field"><span class="pdf-label">Компания/Бренд:</span> ${document.getElementById('company').value || 'Не указано'}</div>
+                        <div class="pdf-field"><span class="pdf-label">Email:</span> ${document.getElementById('email').value}</div>
+                        <div class="pdf-field"><span class="pdf-label">Телефон:</span> ${document.getElementById('phone').value}</div>
+                        <div class="pdf-field"><span class="pdf-label">Предпочтительный способ связи:</span> ${document.getElementById('contact-method').options[document.getElementById('contact-method').selectedIndex].text}</div>
+                    </div>
                     
-                    <h2 style="color: #00F0FF; border-bottom: 2px solid #00F0FF; padding-bottom: 10px; margin-top: 30px; font-size: 18px;">ИНФОРМАЦИЯ О ПРОЕКТЕ</h2>
-                    <p><strong>Тип проекта:</strong> ${projectTypes || 'Не указано'}</p>
-                    <p><strong>Описание проекта:</strong> ${document.getElementById('project-description').value}</p>
-                    <p><strong>Целевая аудитория:</strong> ${document.getElementById('target-audience').value || 'Не указано'}</p>
-                    <p><strong>Конкуренты/Референсы:</strong> ${document.getElementById('competitors').value || 'Не указано'}</p>
+                    <div class="pdf-section">
+                        <div class="pdf-section-title">ИНФОРМАЦИЯ О ПРОЕКТЕ</div>
+                        <div class="pdf-field"><span class="pdf-label">Тип проекта:</span> ${projectTypes || 'Не указано'}</div>
+                        <div class="pdf-field"><span class="pdf-label">Описание проекта:</span> ${document.getElementById('project-description').value}</div>
+                        <div class="pdf-field"><span class="pdf-label">Целевая аудитория:</span> ${document.getElementById('target-audience').value || 'Не указано'}</div>
+                        <div class="pdf-field"><span class="pdf-label">Конкуренты/Референсы:</span> ${document.getElementById('competitors').value || 'Не указано'}</div>
+                    </div>
                     
-                    <h2 style="color: #00F0FF; border-bottom: 2px solid #00F0FF; padding-bottom: 10px; margin-top: 30px; font-size: 18px;">ВИЗУАЛЬНЫЕ ПРЕДПОЧТЕНИЯ</h2>
-                    <p><strong>Предпочтительный стиль:</strong> ${styles || 'Не указано'}</p>
-                    <p><strong>Цветовые предпочтения:</strong> ${document.getElementById('colors').value || 'Не указано'}</p>
-                    <p><strong>Чего следует избегать:</strong> ${document.getElementById('dislikes').value || 'Не указано'}</p>
+                    <div class="pdf-section">
+                        <div class="pdf-section-title">ВИЗУАЛЬНЫЕ ПРЕДПОЧТЕНИЯ</div>
+                        <div class="pdf-field"><span class="pdf-label">Предпочтительный стиль:</span> ${styles || 'Не указано'}</div>
+                        <div class="pdf-field"><span class="pdf-label">Цветовые предпочтения:</span> ${document.getElementById('colors').value || 'Не указано'}</div>
+                        <div class="pdf-field"><span class="pdf-label">Чего следует избегать:</span> ${document.getElementById('dislikes').value || 'Не указано'}</div>
+                    </div>
                     
-                    <h2 style="color: #00F0FF; border-bottom: 2px solid #00F0FF; padding-bottom: 10px; margin-top: 30px; font-size: 18px;">БЮДЖЕТ И СРОКИ</h2>
-                    <p><strong>Примерный бюджет:</strong> ${document.getElementById('budget').options[document.getElementById('budget').selectedIndex].text || 'Не указано'}</p>
-                    <p><strong>Желаемые сроки:</strong> ${document.getElementById('deadline').options[document.getElementById('deadline').selectedIndex].text || 'Не указано'}</p>
-                    <p><strong>Дополнительная информация:</strong> ${document.getElementById('additional-info').value || 'Не указано'}</p>
+                    <div class="pdf-section">
+                        <div class="pdf-section-title">БЮДЖЕТ И СРОКИ</div>
+                        <div class="pdf-field"><span class="pdf-label">Примерный бюджет:</span> ${document.getElementById('budget').options[document.getElementById('budget').selectedIndex].text || 'Не указано'}</div>
+                        <div class="pdf-field"><span class="pdf-label">Желаемые сроки:</span> ${document.getElementById('deadline').options[document.getElementById('deadline').selectedIndex].text || 'Не указано'}</div>
+                        <div class="pdf-field"><span class="pdf-label">Дополнительная информация:</span> ${document.getElementById('additional-info').value || 'Не указано'}</div>
+                    </div>
                     
-                    <div style="margin-top: 40px; text-align: center; font-size: 12px; color: #888;">
-                        <p>Анкета заполнена на сайте DIZMAX | ${new Date().toLocaleDateString('ru-RU')}</p>
+                    <div style="margin-top: 40px; text-align: center; color: #888; font-size: 12px;">
+                        <p>Анкета заполнена на сайте DIZMAX | Студия Дизайна Павла Максимова</p>
                     </div>
                 </div>
             `;
             
-            // Заполнение контейнера для PDF
-            const pdfContainer = document.getElementById('pdf-container');
-            pdfContainer.innerHTML = pdfContent;
+            // Добавляем HTML в документ
+            document.body.insertAdjacentHTML('beforeend', pdfHTML);
+            const pdfElement = document.getElementById('pdf-template');
             
-            // Настройки для PDF
-            const opt = {
-                margin: 10,
-                filename: `Анкета_заказчика_DIZMAX_${document.getElementById('name').value}_${new Date().toISOString().slice(0, 10)}.pdf`,
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { 
+            // Ждем пока элемент отрендерится
+            setTimeout(() => {
+                // Создаем PDF с помощью html2canvas и jsPDF
+                html2canvas(pdfElement, {
                     scale: 2,
                     useCORS: true,
-                    logging: true
-                },
-                jsPDF: { 
-                    unit: 'mm', 
-                    format: 'a4', 
-                    orientation: 'portrait' 
-                }
-            };
-            
-            // Генерация PDF
-            html2pdf().set(opt).from(pdfContainer).save().then(() => {
-                alert('Анкета успешно сохранена в PDF! Теперь вы можете отправить её мне по email или в мессенджере.');
-            });
+                    logging: false,
+                    backgroundColor: '#ffffff'
+                }).then(canvas => {
+                    const imgData = canvas.toDataURL('image/jpeg', 1.0);
+                    const { jsPDF } = window.jspdf;
+                    const pdf = new jsPDF('p', 'mm', 'a4');
+                    
+                    const imgWidth = 210; // A4 width in mm
+                    const pageHeight = 295; // A4 height in mm
+                    const imgHeight = canvas.height * imgWidth / canvas.width;
+                    let heightLeft = imgHeight;
+                    let position = 0;
+                    
+                    pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                    
+                    while (heightLeft >= 0) {
+                        position = heightLeft - imgHeight;
+                        pdf.addPage();
+                        pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                        heightLeft -= pageHeight;
+                    }
+                    
+                    pdf.save(`Анкета_заказчика_DIZMAX_${document.getElementById('name').value}_${new Date().toISOString().slice(0, 10)}.pdf`);
+                    
+                    // Удаляем временный элемент
+                    pdfElement.remove();
+                    
+                    alert('Анкета успешно сохранена в PDF! Теперь вы можете отправить её мне по email или в мессенджере.');
+                }).catch(error => {
+                    console.error('Ошибка при создании PDF:', error);
+                    alert('Произошла ошибка при создании PDF. Пожалуйста, попробуйте еще раз.');
+                    pdfElement.remove();
+                });
+            }, 500);
         });
     </script>
 </body>
