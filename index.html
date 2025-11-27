@@ -468,6 +468,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
+        }
+
+        /* Логотип по центру */
+        .header-logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .nav-links {
@@ -497,6 +505,33 @@
 
         .nav-links a:hover:after {
             width: 100%;
+        }
+
+        /* Кнопка анкеты в хедере */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .questionnaire-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .questionnaire-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.3);
         }
 
         /* Гамбургер меню */
@@ -643,6 +678,30 @@
             font-size: 0.85rem;
             margin-bottom: 25px;
             backdrop-filter: blur(10px);
+        }
+
+        /* Кнопка анкеты в герое */
+        .questionnaire-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .questionnaire-hero-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .questionnaire-hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 209, 102, 0.3);
         }
 
         /* About Section */
@@ -1356,6 +1415,22 @@
                 height: 40px;
                 font-size: 0.9rem;
             }
+
+            /* Скрываем кнопку анкеты в хедере на мобильных */
+            .header-actions {
+                display: none;
+            }
+
+            /* Логотип по центру на мобильных */
+            .header-logo {
+                position: static;
+                transform: none;
+                margin: 0 auto;
+            }
+
+            .header-container {
+                justify-content: space-between;
+            }
         }
 
         /* Slick slider styles */
@@ -1403,7 +1478,6 @@
     <!-- Header -->
     <header id="header">
         <div class="container header-container">
-            <a href="#" class="logo">DIZMAX</a>
             <ul class="nav-links">
                 <li><a href="#home">ГЛАВНАЯ</a></li>
                 <li><a href="#about">ОБО МНЕ</a></li>
@@ -1413,6 +1487,22 @@
                 <li><a href="#process">ПРОЦЕСС</a></li>
                 <li><a href="#contact">КОНТАКТЫ</a></li>
             </ul>
+            
+            <!-- Логотип по центру -->
+            <div class="header-logo">
+                <a href="#" class="logo">DIZMAX</a>
+            </div>
+
+            <!-- Кнопка анкеты в хедере -->
+            <div class="header-actions">
+                <a href="https://nyaganmaksimov-sys.github.io/studio-dizaina/anketa.html" 
+                   class="questionnaire-btn" 
+                   target="_blank">
+                    <span>АНКЕТА ДЛЯ ЗАКАЗЧИКА</span>
+                    <i class="fas fa-clipboard-list"></i>
+                </a>
+            </div>
+
             <button class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -1431,6 +1521,14 @@
             <li><a href="#calculator">КАЛЬКУЛЯТОР</a></li>
             <li><a href="#process">ПРОЦЕСС</a></li>
             <li><a href="#contact">КОНТАКТЫ</a></li>
+            <!-- Кнопка анкеты в мобильном меню -->
+            <li>
+                <a href="https://nyaganmaksimov-sys.github.io/studio-dizaina/anketa.html" 
+                   target="_blank" 
+                   style="color: var(--secondary);">
+                    <i class="fas fa-clipboard-list"></i> АНКЕТА ДЛЯ ЗАКАЗЧИКА
+                </a>
+            </li>
         </ul>
         <div class="mobile-contact">
             <a href="tel:+79863333347">+7 (986) 333 33-47</a>
@@ -1467,9 +1565,20 @@
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
+
+            <!-- Кнопка анкеты в герое -->
+            <div class="questionnaire-section fade-in">
+                <a href="https://nyaganmaksimov-sys.github.io/studio-dizaina/anketa.html" 
+                   class="questionnaire-hero-btn" 
+                   target="_blank">
+                    <span>ЗАПОЛНИТЬ АНКЕТУ ДЛЯ ЗАКАЗЧИКА</span>
+                    <i class="fas fa-clipboard-list"></i>
+                </a>
+            </div>
         </div>
     </section>
 
+    <!-- Остальные секции остаются без изменений -->
     <!-- About Section -->
     <section class="about" id="about">
         <div class="container about-container">
@@ -1527,55 +1636,57 @@
         </div>
     </section>
 
-   <!-- Portfolio Section -->
-<section class="portfolio" id="portfolio">
-    <div class="container">
-        <h2 class="syne text-center fade-in">ИЗБРАННЫЕ ПРОЕКТЫ</h2>
-        <div class="portfolio-slider fade-in">
-            <div class="slider-item">
-                <img src="https://images.unsplash.com/photo-1634942537034-2531766767d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                     alt="Фирменный стиль" class="slider-image">
-                <div class="slider-content">
-                    <span class="project-category">Брендинг</span>
-                    <h3>REVOLUTION COFFEE</h3>
-                    <p>Полный фирменный стиль для сети кофеен</p>
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <h2 class="syne text-center fade-in">ИЗБРАННЫЕ ПРОЕКТЫ</h2>
+            <div class="portfolio-slider fade-in">
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1634942537034-2531766767d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="Фирменный стиль" class="slider-image">
+                    <div class="slider-content">
+                        <span class="project-category">Брендинг</span>
+                        <h3>REVOLUTION COFFEE</h3>
+                        <p>Полный фирменный стиль для сети кофеен</p>
+                    </div>
+                </div>
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="Полиграфия" class="slider-image">
+                    <div class="slider-content">
+                        <span class="project-category">Полиграфия</span>
+                        <h3>PREMIUM BUSINESS CARDS</h3>
+                        <p>Дизайн визиток для бизнес-центра</p>
+                    </div>
+                </div>
+                <div class="slider-item">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                         alt="Веб-дизайн" class="slider-image">
+                    <div class="slider-content">
+                        <span class="project-category">Веб-дизайн</span>
+                        <h3>FASHION E-SHOP</h3>
+                        <p>Интернет-магазин модной одежды</p>
+                    </div>
                 </div>
             </div>
-            <div class="slider-item">
-                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                     alt="Полиграфия" class="slider-image">
-                <div class="slider-content">
-                    <span class="project-category">Полиграфия</span>
-                    <h3>PREMIUM BUSINESS CARDS</h3>
-                    <p>Дизайн визиток для бизнес-центра</p>
-                </div>
+            <div class="slider-nav">
+                <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
             </div>
-            <div class="slider-item">
-                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                     alt="Веб-дизайн" class="slider-image">
-                <div class="slider-content">
-                    <span class="project-category">Веб-дизайн</span>
-                    <h3>FASHION E-SHOP</h3>
-                    <p>Интернет-магазин модной одежды</p>
-                </div>
+            
+            <!-- Кнопка для перехода на полное портфолио -->
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="https://nyaganmaksimov-sys.github.io/studio-dizaina/portfolio.html" 
+                   class="btn btn-primary fade-in" 
+                   target="_blank">
+                    <span>СМОТРЕТЬ ВСЕ РАБОТЫ</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
             </div>
         </div>
-        <div class="slider-nav">
-            <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-            <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
-        </div>
-        
-        <!-- Кнопка для перехода на полное портфолио -->
-        <div class="text-center" style="margin-top: 40px;">
-            <a href="https://nyaganmaksimov-sys.github.io/studio-dizaina/portfolio.html" 
-               class="btn btn-primary fade-in" 
-               target="_blank">
-                <span>СМОТРЕТЬ ВСЕ РАБОТЫ</span>
-                <i class="fas fa-external-link-alt"></i>
-            </a>
-        </div>
-    </div>
-</section>
+    </section>
+
+    <!-- Остальные секции (Calculator, Process, Contact, Footer) остаются без изменений -->
 
     <!-- Calculator Section -->
     <section class="calculator" id="calculator">
