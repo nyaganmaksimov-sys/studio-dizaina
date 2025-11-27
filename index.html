@@ -9,8 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
     <style>
         * {
             margin: 0;
@@ -38,189 +36,36 @@
             line-height: 1.5;
         }
 
-        /* Улучшенный анимированный фон с яркими переливами */
-        .animated-bg {
+        /* Header */
+        header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
         }
 
-        .gradient-orbs {
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        /* Логотип по центру */
+        .header-logo {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 77, 128, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 240, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 209, 102, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 60% 90%, rgba(255, 77, 128, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 90% 60%, rgba(0, 240, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 10% 30%, rgba(255, 209, 102, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 30% 10%, rgba(255, 77, 128, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(0, 240, 255, 0.08) 0%, transparent 50%);
-            background-size: 200% 200%;
-            animation: gradientOrbits 25s ease-in-out infinite;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        @keyframes gradientOrbits {
-            0%, 100% { 
-                background-position: 0% 0%, 100% 100%, 50% 50%, 80% 20%, 20% 80%, 10% 90%, 90% 10%, 70% 30%;
-            }
-            20% { 
-                background-position: 100% 0%, 0% 100%, 25% 75%, 60% 40%, 40% 60%, 30% 70%, 70% 30%, 90% 10%;
-            }
-            40% { 
-                background-position: 100% 100%, 0% 0%, 75% 25%, 20% 80%, 80% 20%, 50% 50%, 10% 90%, 30% 70%;
-            }
-            60% { 
-                background-position: 0% 100%, 100% 0%, 25% 25%, 40% 60%, 60% 40%, 70% 30%, 30% 70%, 10% 90%;
-            }
-            80% { 
-                background-position: 0% 0%, 100% 100%, 75% 75%, 80% 20%, 20% 80%, 90% 10%, 10% 90%, 50% 50%;
-            }
-        }
-
-        .floating-shapes {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .floating-shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0.15;
-        }
-
-        .shape-1 {
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(45deg, var(--primary), rgba(255, 77, 128, 0.7));
-            top: 10%;
-            left: 5%;
-            animation: floatShape1 25s infinite;
-        }
-
-        .shape-2 {
-            width: 350px;
-            height: 350px;
-            background: linear-gradient(135deg, var(--secondary), rgba(0, 240, 255, 0.7));
-            top: 60%;
-            right: 10%;
-            animation: floatShape2 30s infinite;
-        }
-
-        .shape-3 {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(225deg, var(--accent), rgba(255, 209, 102, 0.7));
-            bottom: 10%;
-            left: 20%;
-            animation: floatShape3 35s infinite;
-        }
-
-        .shape-4 {
-            width: 250px;
-            height: 250px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            top: 20%;
-            right: 20%;
-            animation: floatShape4 40s infinite;
-            opacity: 0.12;
-        }
-
-        .shape-5 {
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(180deg, var(--secondary), var(--accent));
-            bottom: 30%;
-            right: 5%;
-            animation: floatShape5 45s infinite;
-            opacity: 0.1;
-        }
-
-        @keyframes floatShape1 {
-            0%, 100% { 
-                transform: translate(0, 0) rotate(0deg);
-            }
-            25% { 
-                transform: translate(50px, 80px) rotate(90deg);
-            }
-            50% { 
-                transform: translate(20px, 150px) rotate(180deg);
-            }
-            75% { 
-                transform: translate(-30px, 100px) rotate(270deg);
-            }
-        }
-
-        @keyframes floatShape2 {
-            0%, 100% { 
-                transform: translate(0, 0) rotate(0deg);
-            }
-            25% { 
-                transform: translate(-60px, 40px) rotate(90deg);
-            }
-            50% { 
-                transform: translate(-100px, -20px) rotate(180deg);
-            }
-            75% { 
-                transform: translate(40px, -80px) rotate(270deg);
-            }
-        }
-
-        @keyframes floatShape3 {
-            0%, 100% { 
-                transform: translate(0, 0) rotate(0deg);
-            }
-            33% { 
-                transform: translate(80px, -40px) rotate(120deg);
-            }
-            66% { 
-                transform: translate(-60px, 100px) rotate(240deg);
-            }
-        }
-
-        @keyframes floatShape4 {
-            0%, 100% { 
-                transform: translate(0, 0) scale(1);
-            }
-            25% { 
-                transform: translate(-40px, 60px) scale(1.1);
-            }
-            50% { 
-                transform: translate(60px, -30px) scale(0.9);
-            }
-            75% { 
-                transform: translate(-20px, -60px) scale(1.05);
-            }
-        }
-
-        @keyframes floatShape5 {
-            0%, 100% { 
-                transform: translate(0, 0) rotate(0deg);
-            }
-            20% { 
-                transform: translate(70px, 20px) rotate(72deg);
-            }
-            40% { 
-                transform: translate(-50px, 80px) rotate(144deg);
-            }
-            60% { 
-                transform: translate(30px, -60px) rotate(216deg);
-            }
-            80% { 
-                transform: translate(-80px, -30px) rotate(288deg);
-            }
-        }
-
-        /* Улучшенный переливающийся логотип */
         .logo {
             font-family: 'Syne', sans-serif;
             font-size: 1.8rem;
@@ -244,36 +89,7 @@
             animation: gradientShift 3s ease infinite;
             position: relative;
             z-index: 1001;
-            text-shadow: 0 0 15px rgba(255, 77, 128, 0.5);
-        }
-
-        .logo::before {
-            content: 'DIZMAX';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                #FF4D80,
-                #FF6B9C,
-                #FF8FB9,
-                #00F0FF,
-                #4DFFFF,
-                #99FFFF,
-                #FFD166,
-                #FFD166,
-                #FF4D80
-            );
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 3s ease infinite, glowEffect 2s ease-in-out infinite alternate;
-            filter: blur(5px);
-            opacity: 0.7;
-            z-index: -1;
+            text-decoration: none;
         }
 
         @keyframes gradientShift {
@@ -288,194 +104,18 @@
             }
         }
 
-        @keyframes glowEffect {
-            0% {
-                filter: blur(5px) brightness(1);
-                opacity: 0.5;
-            }
-            100% {
-                filter: blur(8px) brightness(1.5);
-                opacity: 0.8;
-            }
-        }
-
-        /* Логотип в футере с усиленным эффектом */
-        .footer-logo {
-            font-family: 'Syne', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 800;
-            background: linear-gradient(
-                90deg,
-                #FF4D80,
-                #FF6B9C,
-                #FF8FB9,
-                #00F0FF,
-                #4DFFFF,
-                #99FFFF,
-                #FFD166,
-                #FFD166,
-                #FF4D80
-            );
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 2.5s ease infinite, intenseGlow 1.5s ease-in-out infinite alternate;
-            position: relative;
-            margin-bottom: 25px;
-            display: inline-block;
-            padding: 10px 0;
-        }
-
-        .footer-logo::before {
-            content: 'DIZMAX';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                #FF4D80,
-                #FF6B9C,
-                #FF8FB9,
-                #00F0FF,
-                #4DFFFF,
-                #99FFFF,
-                #FFD166,
-                #FFD166,
-                #FF4D80
-            );
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 2.5s ease infinite, intenseGlow 1.5s ease-in-out infinite alternate;
-            filter: blur(8px);
-            opacity: 0.8;
-            z-index: -1;
-        }
-
-        @keyframes intenseGlow {
-            0% {
-                filter: blur(8px) brightness(1.2);
-                opacity: 0.6;
-                transform: scale(1.02);
-            }
-            100% {
-                filter: blur(12px) brightness(1.8);
-                opacity: 0.9;
-                transform: scale(1.05);
-            }
-        }
-
-        /* Остальные стили остаются без изменений */
-        .syne {
-            font-family: 'Syne', sans-serif;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        section {
-            position: relative;
-            padding: 80px 0;
-        }
-
-        h1, h2, h3, h4 {
-            font-weight: 700;
-            line-height: 1.1;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 40px;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        p {
-            margin-bottom: 20px;
-            color: var(--text-gray);
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition);
-            border: 2px solid transparent;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: var(--dark);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 77, 128, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--light);
-            border-color: var(--light);
-        }
-
-        .btn-secondary:hover {
-            background: var(--light);
-            color: var(--dark);
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 20px 0;
-            transition: var(--transition);
-        }
-
-        header.scrolled {
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 15px 0;
-        }
-
-        .header-container {
+        /* Левое меню */
+        .left-nav {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
+            justify-content: flex-start;
+            flex: 1;
         }
 
-        /* Логотип по центру */
-        .header-logo {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+        /* Правое меню */
+        .right-nav {
+            display: flex;
+            justify-content: flex-end;
+            flex: 1;
         }
 
         .nav-links {
@@ -490,6 +130,7 @@
             font-weight: 500;
             position: relative;
             font-size: 0.95rem;
+            white-space: nowrap;
         }
 
         .nav-links a:after {
@@ -632,760 +273,57 @@
             color: var(--primary);
         }
 
-        /* Hero Section */
+        /* Hero Section для демонстрации */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            position: relative;
-            overflow: hidden;
-            padding: 100px 0 80px;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-title {
+        .hero h1 {
             font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            background: linear-gradient(45deg, var(--light), var(--secondary), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            max-width: 500px;
-            margin-bottom: 40px;
-            color: var(--text-gray);
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .experience-badge {
-            display: inline-block;
-            background: var(--dark-gray);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            margin-bottom: 25px;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Кнопка анкеты в герое */
-        .questionnaire-section {
-            margin-top: 30px;
-            text-align: center;
-        }
-
-        .questionnaire-hero-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--accent);
-            color: var(--dark);
-            padding: 12px 25px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .questionnaire-hero-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 209, 102, 0.3);
-        }
-
-        /* About Section */
-        .about {
-            background: var(--dark-gray);
-            border-radius: 30px;
-            margin: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-image {
-            position: relative;
-            order: 2;
-        }
-
-        .image-frame {
-            width: 100%;
-            height: 400px;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            position: relative;
-            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
-            box-shadow: 
-                0 15px 35px rgba(0, 0, 0, 0.5),
-                0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .image-frame:hover {
-            transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.02);
-            box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.6),
-                0 15px 25px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(255, 77, 128, 0.2);
-        }
-
-        .image-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .image-frame:hover img {
-            transform: scale(1.05);
-        }
-
-        .floating-element {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            background: var(--primary);
-            border-radius: 15px;
-            top: -15px;
-            right: -15px;
-            animation: bounce 3s infinite;
-        }
-
-        .about-content {
-            order: 1;
-        }
-
-        /* Services Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .service-card {
-            background: var(--dark-gray);
-            padding: 40px 30px;
-            border-radius: var(--border-radius);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-        }
-
-        .service-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 20px;
-            display: block;
         }
 
-        /* Portfolio Section */
-        .portfolio-slider {
-            position: relative;
-            margin: 0 auto;
-        }
-
-        .slider-item {
-            position: relative;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            margin: 0 10px;
-            background: var(--dark-gray);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-            height: 300px;
-            transform: scale(0.95);
-            opacity: 0.8;
-        }
-
-        .slick-center .slider-item {
-            transform: scale(1);
-            opacity: 1;
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(255, 77, 128, 0.2);
-        }
-
-        .slider-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        .slider-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .slider-item:hover .slider-image {
-            transform: scale(1.1);
-        }
-
-        .slider-content {
-            padding: 20px;
-            background: var(--dark-gray);
-        }
-
-        .slider-content h3 {
-            color: var(--light);
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-        }
-
-        .slider-content p {
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
             color: var(--text-gray);
-            font-size: 0.85rem;
-            margin-bottom: 0;
-        }
-
-        .project-category {
-            display: inline-block;
-            background: var(--primary);
-            color: var(--dark);
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .slider-nav {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .slider-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--dark-gray);
-            border: 2px solid var(--primary);
-            color: var(--light);
-            font-size: 1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .slider-btn:hover {
-            background: var(--primary);
-        }
-
-        /* Calculator Section */
-        .calculator {
-            background: var(--dark-gray);
-            border-radius: 30px;
-            margin: 20px;
-        }
-
-        .calculator-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .mobile-calculator {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .calculator-category {
-            background: var(--dark);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .category-header {
-            padding: 15px 20px;
-            background: rgba(255, 77, 128, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .category-header h3 {
-            font-size: 1.1rem;
-            color: var(--primary);
-            margin: 0;
-        }
-
-        .category-icon {
-            transition: var(--transition);
-        }
-
-        .category-content {
-            display: none;
-            padding: 15px;
-        }
-
-        .category-content.active {
-            display: block;
-        }
-
-        .service-item {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .service-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-        }
-
-        .service-info {
-            flex: 1;
-        }
-
-        .service-name {
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 5px;
-        }
-
-        .service-description {
-            font-size: 0.8rem;
-            color: var(--text-gray);
-        }
-
-        .service-price {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1rem;
-            min-width: 70px;
-            text-align: right;
-        }
-
-        .service-controls {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .complexity-select {
-            width: 100%;
-            background: var(--dark-gray);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--light);
-            padding: 8px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-        }
-
-        .quantity-control {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .quantity-label {
-            font-size: 0.85rem;
-            color: var(--text-gray);
-        }
-
-        .quantity-buttons {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .quantity-btn {
-            width: 32px;
-            height: 32px;
-            background: var(--primary);
-            border: none;
-            border-radius: 50%;
-            color: var(--dark);
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .quantity-btn:disabled {
-            background: var(--text-gray);
-            cursor: not-allowed;
-        }
-
-        .quantity-input {
-            width: 40px;
-            background: var(--dark-gray);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--light);
-            text-align: center;
-            padding: 5px;
-            border-radius: 5px;
-            font-size: 0.9rem;
-        }
-
-        .calculator-summary {
-            background: var(--dark);
-            padding: 20px;
-            border-radius: var(--border-radius);
-            border: 2px solid var(--primary);
-            margin-top: 20px;
-        }
-
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .summary-item:last-child {
-            border-bottom: none;
-            font-weight: 700;
-        }
-
-        .summary-total {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-align: center;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .calculator-actions {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        /* Process Section */
-        .process-timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .process-timeline:before {
-            content: '';
-            position: absolute;
-            left: 25px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
-        }
-
-        .process-step {
-            display: flex;
-            gap: 25px;
-            align-items: flex-start;
-            position: relative;
-        }
-
-        .step-number {
-            width: 50px;
-            height: 50px;
-            background: var(--dark-gray);
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1rem;
-            flex-shrink: 0;
-            position: relative;
-            z-index: 2;
-        }
-
-        .step-content {
-            flex: 1;
-            padding-top: 5px;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--dark-gray);
-            border-radius: 30px;
-            margin: 20px;
-            text-align: center;
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .contact-item {
-            background: var(--dark);
-            padding: 25px;
-            border-radius: var(--border-radius);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-        }
-
-        .contact-item:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .contact-icon {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        .contact-item h3 {
-            margin-bottom: 12px;
-            color: var(--light);
-        }
-
-        .contact-item a {
-            color: var(--text-gray);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .contact-item a:hover {
-            color: var(--primary);
-        }
-
-        .contact-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 40px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            background: var(--dark);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .social-link:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        /* Footer */
-        footer {
-            padding: 60px 0 30px;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--text-gray);
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 0.9rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        .copyright {
-            color: var(--text-gray);
-            font-size: 0.85rem;
-        }
-
-        /* Анимации */
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: var(--transition);
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Анимации категорий */
-        .category-icon.rotated {
-            transform: rotate(180deg);
-        }
-
-        .service-item {
-            transition: var(--transition);
-        }
-
-        .service-item:hover {
-            border-color: var(--primary);
         }
 
         /* Responsive */
-        @media (min-width: 768px) {
-            section {
-                padding: 100px 0;
+        @media (max-width: 1100px) {
+            .nav-links {
+                gap: 20px;
             }
             
-            .about-container {
-                grid-template-columns: 1fr 1fr;
-                gap: 60px;
-            }
-            
-            .about-image {
-                order: 1;
-            }
-            
-            .about-content {
-                order: 2;
-            }
-            
-            .service-item {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                gap: 15px;
-            }
-            
-            .service-header {
-                flex: 1;
-                margin-bottom: 0;
-            }
-            
-            .service-controls {
-                flex-direction: row;
-                align-items: center;
-                gap: 15px;
-            }
-            
-            .complexity-select {
-                width: 140px;
-            }
-            
-            .quantity-control {
-                flex-direction: row;
-                gap: 10px;
-            }
-            
-            .quantity-label {
-                display: none;
-            }
-            
-            .hero {
-                padding: 120px 0 100px;
-            }
-            
-            .about, .contact, .calculator {
-                margin: 30px;
+            .nav-links a {
+                font-size: 0.9rem;
             }
         }
 
-        @media (min-width: 1024px) {
-            .container {
-                padding: 0 40px;
-            }
-            
+        @media (max-width: 992px) {
             .nav-links {
-                gap: 40px;
+                gap: 15px;
             }
             
-            .services-grid {
-                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-                gap: 30px;
+            .nav-links a {
+                font-size: 0.85rem;
             }
             
-            .service-card {
-                padding: 50px 40px;
-            }
-            
-            .process-timeline {
-                gap: 50px;
-            }
-            
-            .process-timeline:before {
-                left: 30px;
-            }
-            
-            .process-step {
-                gap: 40px;
-            }
-            
-            .step-number {
-                width: 60px;
-                height: 60px;
-                font-size: 1.2rem;
-            }
-            
-            .about, .contact, .calculator {
-                margin: 40px;
+            .questionnaire-btn {
+                padding: 8px 15px;
+                font-size: 0.8rem;
             }
         }
 
         @media (max-width: 767px) {
-            .nav-links {
+            .left-nav, .right-nav {
                 display: none;
             }
             
@@ -1393,104 +331,47 @@
                 display: flex;
             }
             
-            .hero-btns, .contact-buttons, .calculator-actions {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .hero-title {
-                font-size: clamp(2rem, 8vw, 3.5rem);
-            }
-            
-            .process-timeline:before {
-                left: 20px;
-            }
-            
-            .process-step {
-                gap: 20px;
-            }
-            
-            .step-number {
-                width: 40px;
-                height: 40px;
-                font-size: 0.9rem;
-            }
-
-            /* Скрываем кнопку анкеты в хедере на мобильных */
-            .header-actions {
-                display: none;
-            }
-
-            /* Логотип по центру на мобильных */
             .header-logo {
                 position: static;
                 transform: none;
-                margin: 0 auto;
             }
-
+            
             .header-container {
                 justify-content: space-between;
             }
-        }
-
-        /* Slick slider styles */
-        .slick-dots {
-            bottom: -40px;
-        }
-
-        .slick-dots li button:before {
-            color: var(--light);
-            opacity: 0.5;
-            font-size: 10px;
-        }
-
-        .slick-dots li.slick-active button:before {
-            color: var(--primary);
-            opacity: 1;
-        }
-
-        .slick-track {
-            display: flex !important;
-        }
-
-        .slick-slide {
-            height: inherit !important;
-        }
-
-        .slick-slide > div {
-            height: 100%;
+            
+            .header-actions {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Улучшенный анимированный фон с яркими переливами -->
-    <div class="animated-bg">
-        <div class="gradient-orbs"></div>
-        <div class="floating-shapes">
-            <div class="floating-shape shape-1"></div>
-            <div class="floating-shape shape-2"></div>
-            <div class="floating-shape shape-3"></div>
-            <div class="floating-shape shape-4"></div>
-            <div class="floating-shape shape-5"></div>
-        </div>
-    </div>
-
     <!-- Header -->
     <header id="header">
-        <div class="container header-container">
-            <ul class="nav-links">
-                <li><a href="#home">ГЛАВНАЯ</a></li>
-                <li><a href="#about">ОБО МНЕ</a></li>
-                <li><a href="#services">УСЛУГИ</a></li>
-                <li><a href="#portfolio">ПОРТФОЛИО</a></li>
-                <li><a href="#calculator">КАЛЬКУЛЯТОР</a></li>
-                <li><a href="#process">ПРОЦЕСС</a></li>
-                <li><a href="#contact">КОНТАКТЫ</a></li>
-            </ul>
+        <div class="header-container">
+            <!-- Левое меню -->
+            <div class="left-nav">
+                <ul class="nav-links">
+                    <li><a href="#home">ГЛАВНАЯ</a></li>
+                    <li><a href="#about">ОБО МНЕ</a></li>
+                    <li><a href="#services">УСЛУГИ</a></li>
+                </ul>
+            </div>
             
             <!-- Логотип по центру -->
             <div class="header-logo">
                 <a href="#" class="logo">DIZMAX</a>
+            </div>
+
+            <!-- Правое меню -->
+            <div class="right-nav">
+                <ul class="nav-links">
+                    <li><a href="#portfolio">ПОРТФОЛИО</a></li>
+                    <li><a href="#calculator">КАЛЬКУЛЯТОР</a></li>
+                    <li><a href="#process">ПРОЦЕСС</a></li>
+                    <li><a href="#contact">КОНТАКТЫ</a></li>
+                </ul>
             </div>
 
             <!-- Кнопка анкеты в хедере -->
@@ -1498,7 +379,7 @@
                 <a href="https://nyaganmaksimov-sys.github.io/studio-dizaina/anketa.html" 
                    class="questionnaire-btn" 
                    target="_blank">
-                    <span>АНКЕТА ДЛЯ ЗАКАЗЧИКА</span>
+                    <span>АНКЕТА</span>
                     <i class="fas fa-clipboard-list"></i>
                 </a>
             </div>
@@ -1538,756 +419,16 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Hero Section для демонстрации -->
     <section class="hero" id="home">
-        <div class="container hero-content">
-            <div class="experience-badge fade-in">
-                <span>⚡ 20 ЛЕТ СОЗДАЮ ВИЗУАЛЬНЫЕ РЕВОЛЮЦИИ</span>
-            </div>
-            <h1 class="hero-title fade-in">
-                ПРЕВРАЩАЮ<br>
-                ИДЕИ В<br>
-                <span style="color: var(--primary)">ВИЗУАЛЬНЫЕ<br>
-                ИСТОРИИ</span>
-            </h1>
-            <p class="hero-subtitle fade-in">
-                Графический дизайнер, который не следует трендам, а создает их. 
-                20 лет трансформирую бизнес-идеи в смелые визуальные решения, 
-                которые запоминаются и продают.
-            </p>
-            <div class="hero-btns">
-                <a href="#calculator" class="btn btn-primary fade-in">
-                    <span>РАССЧИТАТЬ СТОИМОСТЬ</span>
-                    <i class="fas fa-calculator"></i>
-                </a>
-                <a href="#portfolio" class="btn btn-secondary fade-in">
-                    <span>СМОТРЕТЬ РАБОТЫ</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <!-- Кнопка анкеты в герое -->
-            <div class="questionnaire-section fade-in">
-                <a href="https://nyaganmaksimov-sys.github.io/studio-dizaina/anketa.html" 
-                   class="questionnaire-hero-btn" 
-                   target="_blank">
-                    <span>ЗАПОЛНИТЬ АНКЕТУ ДЛЯ ЗАКАЗЧИКА</span>
-                    <i class="fas fa-clipboard-list"></i>
-                </a>
-            </div>
+        <div>
+            <h1>DIZMAX</h1>
+            <p>Студия Дизайна Павла Максимова</p>
+            <p>Графический дизайнер с 20-летним опытом</p>
         </div>
     </section>
 
-    <!-- Остальные секции остаются без изменений -->
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container about-container">
-            <div class="about-image">
-                <div class="image-frame">
-                    <img src="images/1764146690.png" alt="Павел Максимов">
-                </div>
-                <div class="floating-element"></div>
-            </div>
-            <div class="about-content">
-                <h2 class="syne fade-in">НЕ ПРОСТО ДИЗАЙН.<br>СТРАТЕГИЯ В ДЕЙСТВИИ.</h2>
-                <p class="fade-in">
-                    За два десятилетия в дизайне я понял главное: красота без стратегии — просто украшение. 
-                    Каждый мой проект — это тщательно продуманная визуальная коммуникация, которая решает 
-                    конкретные бизнес-задачи.
-                </p>
-                <p class="fade-in">
-                    Специализируюсь на создании смелых фирменных стилей, которые выделяются на фоне конкурентов, 
-                    и сайтов на Tilda, которые не просто красивы, а конвертируют посетителей в клиентов.
-                </p>
-                <div class="fade-in">
-                    <a href="#calculator" class="btn btn-primary">
-                        <span>РАССЧИТАТЬ СТОИМОСТЬ</span>
-                        <i class="fas fa-calculator"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="syne text-center fade-in">УСЛУГИ</h2>
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <span class="service-icon">🎭</span>
-                    <h3>ФИРМЕННЫЙ СТИЛЬ С ХАРАКТЕРОМ</h3>
-                    <p>Создаю не просто логотипы, а визуальные личности брендов. Разрабатываю смелые, 
-                    запоминающиеся решения, которые отражают суть вашего бизнеса и говорят с вашей аудиторией на одном языке.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <span class="service-icon">📢</span>
-                    <h3>ПОЛИГРАФИЯ, КОТОРАЯ РАБОТАЕТ</h3>
-                    <p>Визитки, которые не выбрасывают. Листовки, которые читают. Буклеты, которые продают. 
-                    Создаю полиграфию, которая становится эффективным инструментом маркетинга, а не просто расходным материалом.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <span class="service-icon">💻</span>
-                    <h3>САЙТЫ НА TILDA</h3>
-                    <p>Лендинги от 10 000 ₽, интернет-магазины от 20 000 ₽, корпоративные сайты от 25 000 ₽. 
-                    Сайты, которые впечатляют дизайном и конвертируют посетителей в клиентов.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section class="portfolio" id="portfolio">
-        <div class="container">
-            <h2 class="syne text-center fade-in">ИЗБРАННЫЕ ПРОЕКТЫ</h2>
-            <div class="portfolio-slider fade-in">
-                <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1634942537034-2531766767d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                         alt="Фирменный стиль" class="slider-image">
-                    <div class="slider-content">
-                        <span class="project-category">Брендинг</span>
-                        <h3>REVOLUTION COFFEE</h3>
-                        <p>Полный фирменный стиль для сети кофеен</p>
-                    </div>
-                </div>
-                <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                         alt="Полиграфия" class="slider-image">
-                    <div class="slider-content">
-                        <span class="project-category">Полиграфия</span>
-                        <h3>PREMIUM BUSINESS CARDS</h3>
-                        <p>Дизайн визиток для бизнес-центра</p>
-                    </div>
-                </div>
-                <div class="slider-item">
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                         alt="Веб-дизайн" class="slider-image">
-                    <div class="slider-content">
-                        <span class="project-category">Веб-дизайн</span>
-                        <h3>FASHION E-SHOP</h3>
-                        <p>Интернет-магазин модной одежды</p>
-                    </div>
-                </div>
-            </div>
-            <div class="slider-nav">
-                <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            
-            <!-- Кнопка для перехода на полное портфолио -->
-            <div class="text-center" style="margin-top: 40px;">
-                <a href="https://nyaganmaksimov-sys.github.io/studio-dizaina/portfolio.html" 
-                   class="btn btn-primary fade-in" 
-                   target="_blank">
-                    <span>СМОТРЕТЬ ВСЕ РАБОТЫ</span>
-                    <i class="fas fa-external-link-alt"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Остальные секции (Calculator, Process, Contact, Footer) остаются без изменений -->
-
-    <!-- Calculator Section -->
-    <section class="calculator" id="calculator">
-        <div class="container calculator-container">
-            <h2 class="syne text-center fade-in">КАЛЬКУЛЯТОР СТОИМОСТИ</h2>
-            <p class="text-center fade-in" style="margin-bottom: 30px;">Выберите нужные услуги и рассчитайте стоимость вашего проекта</p>
-            
-            <div class="mobile-calculator">
-                <!-- Категория: Фирменный стиль -->
-                <div class="calculator-category">
-                    <div class="category-header" onclick="toggleCategory('branding')">
-                        <h3>🎭 ФИРМЕННЫЙ СТИЛЬ</h3>
-                        <i class="fas fa-chevron-down category-icon" id="branding-icon"></i>
-                    </div>
-                    <div class="category-content" id="branding-content">
-                        <div class="service-item" data-service="logo" data-prices='{"simple":5000,"medium":10000,"complex":15000}'>
-                            <div class="service-header">
-                                <div class="service-info">
-                                    <div class="service-name">Разработка логотипа</div>
-                                    <div class="service-description">Создание уникального логотипа для вашего бренда</div>
-                                </div>
-                                <div class="service-price">5 000 ₽</div>
-                            </div>
-                            <div class="service-controls">
-                                <select class="complexity-select">
-                                    <option value="simple">Простой</option>
-                                    <option value="medium">Средний</option>
-                                    <option value="complex">Сложный</option>
-                                </select>
-                                <div class="quantity-control">
-                                    <span class="quantity-label">Количество:</span>
-                                    <div class="quantity-buttons">
-                                        <button class="quantity-btn minus">-</button>
-                                        <input type="number" class="quantity-input" value="0" min="0">
-                                        <button class="quantity-btn plus">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="service-item" data-service="vector" data-prices='{"simple":800,"medium":1200,"complex":2000}'>
-                            <div class="service-header">
-                                <div class="service-info">
-                                    <div class="service-name">Отрисовка логотипа</div>
-                                    <div class="service-description">Восстановление в векторный формат</div>
-                                </div>
-                                <div class="service-price">800 ₽</div>
-                            </div>
-                            <div class="service-controls">
-                                <select class="complexity-select">
-                                    <option value="simple">Простой</option>
-                                    <option value="medium">Средний</option>
-                                    <option value="complex">Сложный</option>
-                                </select>
-                                <div class="quantity-control">
-                                    <span class="quantity-label">Количество:</span>
-                                    <div class="quantity-buttons">
-                                        <button class="quantity-btn minus">-</button>
-                                        <input type="number" class="quantity-input" value="0" min="0">
-                                        <button class="quantity-btn plus">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="service-item" data-service="guideline" data-price="25000">
-                            <div class="service-header">
-                                <div class="service-info">
-                                    <div class="service-name">Гайдлайн по фирменному стилю</div>
-                                    <div class="service-description">Руководство по использованию фирменного стиля</div>
-                                </div>
-                                <div class="service-price">25 000 ₽</div>
-                            </div>
-                            <div class="service-controls">
-                                <div class="quantity-control">
-                                    <span class="quantity-label">Количество:</span>
-                                    <div class="quantity-buttons">
-                                        <button class="quantity-btn minus">-</button>
-                                        <input type="number" class="quantity-input" value="0" min="0">
-                                        <button class="quantity-btn plus">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Категория: Полиграфия -->
-                <div class="calculator-category">
-                    <div class="category-header" onclick="toggleCategory('polygraphy')">
-                        <h3>📢 ПОЛИГРАФИЯ</h3>
-                        <i class="fas fa-chevron-down category-icon" id="polygraphy-icon"></i>
-                    </div>
-                    <div class="category-content" id="polygraphy-content">
-                        <div class="service-item" data-service="business-card-single" data-prices='{"simple":400,"medium":600,"complex":800}'>
-                            <div class="service-header">
-                                <div class="service-info">
-                                    <div class="service-name">Визитка односторонняя</div>
-                                    <div class="service-description">90х50 мм, 4+0</div>
-                                </div>
-                                <div class="service-price">400 ₽</div>
-                            </div>
-                            <div class="service-controls">
-                                <select class="complexity-select">
-                                    <option value="simple">Простой</option>
-                                    <option value="medium">Средний</option>
-                                    <option value="complex">Сложный</option>
-                                </select>
-                                <div class="quantity-control">
-                                    <span class="quantity-label">Количество:</span>
-                                    <div class="quantity-buttons">
-                                        <button class="quantity-btn minus">-</button>
-                                        <input type="number" class="quantity-input" value="0" min="0">
-                                        <button class="quantity-btn plus">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="service-item" data-service="flyer-a4-single" data-prices='{"simple":1500,"medium":1800,"complex":2000}'>
-                            <div class="service-header">
-                                <div class="service-info">
-                                    <div class="service-name">Листовка А4 односторонняя</div>
-                                    <div class="service-description">4+0</div>
-                                </div>
-                                <div class="service-price">1 500 ₽</div>
-                            </div>
-                            <div class="service-controls">
-                                <select class="complexity-select">
-                                    <option value="simple">Простой</option>
-                                    <option value="medium">Средний</option>
-                                    <option value="complex">Сложный</option>
-                                </select>
-                                <div class="quantity-control">
-                                    <span class="quantity-label">Количество:</span>
-                                    <div class="quantity-buttons">
-                                        <button class="quantity-btn minus">-</button>
-                                        <input type="number" class="quantity-input" value="0" min="0">
-                                        <button class="quantity-btn plus">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Категория: Сайты -->
-                <div class="calculator-category">
-                    <div class="category-header" onclick="toggleCategory('websites')">
-                        <h3>💻 САЙТЫ</h3>
-                        <i class="fas fa-chevron-down category-icon" id="websites-icon"></i>
-                    </div>
-                    <div class="category-content" id="websites-content">
-                        <div class="service-item" data-service="landing" data-price="10000">
-                            <div class="service-header">
-                                <div class="service-info">
-                                    <div class="service-name">Лендинг на Tilda</div>
-                                    <div class="service-description">Одностраничный сайт-визитка</div>
-                                </div>
-                                <div class="service-price">10 000 ₽</div>
-                            </div>
-                            <div class="service-controls">
-                                <div class="quantity-control">
-                                    <span class="quantity-label">Количество:</span>
-                                    <div class="quantity-buttons">
-                                        <button class="quantity-btn minus">-</button>
-                                        <input type="number" class="quantity-input" value="0" min="0">
-                                        <button class="quantity-btn plus">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="service-item" data-service="ecommerce" data-price="20000">
-                            <div class="service-header">
-                                <div class="service-info">
-                                    <div class="service-name">Интернет-магазин</div>
-                                    <div class="service-description">Многостраничный сайт с корзиной</div>
-                                </div>
-                                <div class="service-price">20 000 ₽</div>
-                            </div>
-                            <div class="service-controls">
-                                <div class="quantity-control">
-                                    <span class="quantity-label">Количество:</span>
-                                    <div class="quantity-buttons">
-                                        <button class="quantity-btn minus">-</button>
-                                        <input type="number" class="quantity-input" value="0" min="0">
-                                        <button class="quantity-btn plus">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Категория: Дополнительно -->
-                <div class="calculator-category">
-                    <div class="category-header" onclick="toggleCategory('additional')">
-                        <h3>⚡ ДОПОЛНИТЕЛЬНО</h3>
-                        <i class="fas fa-chevron-down category-icon" id="additional-icon"></i>
-                    </div>
-                    <div class="category-content" id="additional-content">
-                        <div class="service-item" data-service="rush" data-percentage="25">
-                            <div class="service-header">
-                                <div class="service-info">
-                                    <div class="service-name">Срочность выполнения</div>
-                                    <div class="service-description">Доплата за срочный заказ</div>
-                                </div>
-                                <div class="service-price">+25%</div>
-                            </div>
-                            <div class="service-controls">
-                                <div class="quantity-control">
-                                    <input type="checkbox" class="rush-checkbox" style="width: 20px; height: 20px;">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="service-item" data-service="correction" data-price="150">
-                            <div class="service-header">
-                                <div class="service-info">
-                                    <div class="service-name">Дополнительная правка</div>
-                                    <div class="service-description">Каждая последующая правка</div>
-                                </div>
-                                <div class="service-price">150 ₽</div>
-                            </div>
-                            <div class="service-controls">
-                                <div class="quantity-control">
-                                    <span class="quantity-label">Количество:</span>
-                                    <div class="quantity-buttons">
-                                        <button class="quantity-btn minus">-</button>
-                                        <input type="number" class="quantity-input" value="0" min="0">
-                                        <button class="quantity-btn plus">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="calculator-summary fade-in">
-                <h3 style="text-align: center; margin-bottom: 20px;">ИТОГО</h3>
-                <div class="summary-item">
-                    <span>Стоимость услуг:</span>
-                    <span id="subtotal">0 ₽</span>
-                </div>
-                <div class="summary-item">
-                    <span>Дополнительные опции:</span>
-                    <span id="additional-cost">0 ₽</span>
-                </div>
-                <div class="summary-item">
-                    <span>Общая стоимость:</span>
-                    <span id="total-cost">0 ₽</span>
-                </div>
-                <div class="summary-total" id="final-total">0 ₽</div>
-                
-                <div class="calculator-actions">
-                    <a href="#contact" class="btn btn-primary">
-                        <span>ЗАКАЗАТЬ РАСЧЕТ</span>
-                        <i class="fas fa-paper-plane"></i>
-                    </a>
-                    <button class="btn btn-secondary" id="reset-calculator">
-                        <span>СБРОСИТЬ</span>
-                        <i class="fas fa-redo"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process Section -->
-    <section class="process" id="process">
-        <div class="container">
-            <h2 class="syne text-center fade-in">КАК МЫ БУДЕМ СОЗДАВАТЬ ШЕДЕВР</h2>
-            <div class="process-timeline">
-                <div class="process-step fade-in">
-                    <div class="step-number">01</div>
-                    <div class="step-content">
-                        <h3>ПОГРУЖЕНИЕ В ВАШ МИР</h3>
-                        <p>Глубоко изучаю ваш бизнес, конкурентов и целевую аудиторию. 
-                        Проводим мозговой штурм, чтобы найти ту самую уникальную идею.</p>
-                    </div>
-                </div>
-                <div class="process-step fade-in">
-                    <div class="step-number">02</div>
-                    <div class="step-content">
-                        <h3>КОНЦЕПЦИЯ И СТРАТЕГИЯ</h3>
-                        <p>Разрабатываю креативную концепцию и визуальная стратегия. 
-                        Создаю moodboard и первые эскизы, которые зададут направление.</p>
-                    </div>
-                </div>
-                <div class="process-step fade-in">
-                    <div class="step-number">03</div>
-                    <div class="step-content">
-                        <h3>ВОПЛОЩЕНИЕ В ДИЗАЙНЕ</h3>
-                        <p>Создаю финальные дизайны, оттачивая каждую деталь. 
-                        Использую передовые подходы и техники для достижения максимального impact.</p>
-                    </div>
-                </div>
-                <div class="process-step fade-in">
-                    <div class="step-number">04</div>
-                    <div class="step-content">
-                        <h3>РЕАЛИЗАЦИЯ И ЗАПУСК</h3>
-                        <p>Подготавливаю все необходимые файлы, материалы или запускаю сайт. 
-                        Обеспечиваю полную поддержку на этапе внедрения.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="syne fade-in">ГОТОВЫ СДЕЛАТЬ ВАШ БРЕНД<br>НЕЗАБЫВАЕМЫМ?</h2>
-            <p class="fade-in">Давайте обсудим, как мы можем превратить ваши идеи в мощный визуальный инструмент</p>
-            
-            <div class="contact-info">
-                <div class="contact-item fade-in">
-                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                    <h3>Телефон</h3>
-                    <a href="tel:+79863333347">+7 (986) 333 33-47</a>
-                </div>
-                <div class="contact-item fade-in">
-                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                    <h3>Email</h3>
-                    <a href="mailto:3333347@bk.ru">3333347@bk.ru</a>
-                </div>
-                <div class="contact-item fade-in">
-                    <div class="contact-icon"><i class="fab fa-telegram"></i></div>
-                    <h3>Telegram</h3>
-                    <a href="https://t.me/maxpa1985" target="_blank">@maxpa1985</a>
-                </div>
-                <div class="contact-item fade-in">
-                    <div class="contact-icon"><i class="fab fa-vk"></i></div>
-                    <h3>VK</h3>
-                    <a href="https://vk.com/maximovpa" target="_blank">vk.com/maximovpa</a>
-                </div>
-            </div>
-
-            <div class="contact-buttons">
-                <a href="mailto:3333347@bk.ru" class="btn btn-primary fade-in">
-                    <span>НАПИСАТЬ НА ПОЧТУ</span>
-                    <i class="fas fa-paper-plane"></i>
-                </a>
-                <a href="https://t.me/maxpa1985" target="_blank" class="btn btn-secondary fade-in">
-                    <span>НАПИСАТЬ В TELEGRAM</span>
-                    <i class="fab fa-telegram"></i>
-                </a>
-                <a href="tel:+79863333347" class="btn btn-secondary fade-in">
-                    <span>ПОЗВОНИТЬ</span>
-                    <i class="fas fa-phone"></i>
-                </a>
-            </div>
-
-            <div class="social-links">
-                <a href="https://vk.com/maximovpa" target="_blank" class="social-link"><i class="fab fa-vk"></i></a>
-                <a href="https://t.me/maxpa1985" target="_blank" class="social-link"><i class="fab fa-telegram"></i></a>
-                <a href="mailto:3333347@bk.ru" class="social-link"><i class="fas fa-envelope"></i></a>
-                <a href="tel:+79863333347" class="social-link"><i class="fas fa-phone"></i></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-logo">DIZMAX</div>
-            <div class="footer-links">
-                <a href="#home">Главная</a>
-                <a href="#about">Обо мне</a>
-                <a href="#services">Услуги</a>
-                <a href="#portfolio">Портфолио</a>
-                <a href="#calculator">Калькулятор</a>
-                <a href="#process">Процесс</a>
-                <a href="#contact">Контакты</a>
-            </div>
-            <div class="copyright">
-                <p>© 2024 DIZMAX | Студия Дизайна Павла Максимова. Все права защищены.</p>
-                <p style="margin-top: 8px;">Телефон: +7 (986) 333 33-47 | Email: 3333347@bk.ru</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    
     <script>
-        // Calculator functionality
-        class MobilePriceCalculator {
-            constructor() {
-                this.services = new Map();
-                this.initEventListeners();
-                this.updateTotal();
-                this.updateButtonStates();
-                // Открываем первую категорию по умолчанию
-                this.toggleCategory('branding', true);
-            }
-
-            initEventListeners() {
-                // Quantity controls
-                document.querySelectorAll('.quantity-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const input = e.target.closest('.quantity-control').querySelector('.quantity-input');
-                        const serviceItem = e.target.closest('.service-item');
-                        
-                        if (e.target.classList.contains('plus')) {
-                            input.value = parseInt(input.value) + 1;
-                        } else if (e.target.classList.contains('minus')) {
-                            input.value = Math.max(0, parseInt(input.value) - 1);
-                        }
-                        
-                        this.updateService(serviceItem);
-                        this.updateTotal();
-                        this.updateButtonStates();
-                    });
-                });
-
-                // Input changes
-                document.querySelectorAll('.quantity-input').forEach(input => {
-                    input.addEventListener('change', (e) => {
-                        const serviceItem = e.target.closest('.service-item');
-                        this.updateService(serviceItem);
-                        this.updateTotal();
-                        this.updateButtonStates();
-                    });
-                });
-
-                // Complexity changes
-                document.querySelectorAll('.complexity-select').forEach(select => {
-                    select.addEventListener('change', (e) => {
-                        const serviceItem = e.target.closest('.service-item');
-                        this.updateServicePrice(serviceItem);
-                        this.updateTotal();
-                    });
-                });
-
-                // Checkbox changes
-                document.querySelectorAll('.rush-checkbox').forEach(checkbox => {
-                    checkbox.addEventListener('change', () => {
-                        this.updateTotal();
-                    });
-                });
-
-                // Reset calculator
-                document.getElementById('reset-calculator').addEventListener('click', () => {
-                    this.resetCalculator();
-                });
-            }
-
-            toggleCategory(categoryId, forceOpen = false) {
-                const content = document.getElementById(`${categoryId}-content`);
-                const icon = document.getElementById(`${categoryId}-icon`);
-                
-                if (forceOpen || !content.classList.contains('active')) {
-                    content.classList.add('active');
-                    icon.classList.add('rotated');
-                } else {
-                    content.classList.remove('active');
-                    icon.classList.remove('rotated');
-                }
-            }
-
-            updateService(serviceItem) {
-                const serviceId = serviceItem.dataset.service;
-                const quantity = parseInt(serviceItem.querySelector('.quantity-input').value);
-                
-                if (quantity === 0) {
-                    this.services.delete(serviceId);
-                } else {
-                    const complexity = serviceItem.querySelector('.complexity-select')?.value || 'simple';
-                    const price = this.calculateServicePrice(serviceItem, complexity);
-                    
-                    this.services.set(serviceId, {
-                        quantity,
-                        complexity,
-                        price,
-                        element: serviceItem
-                    });
-                }
-            }
-
-            calculateServicePrice(serviceItem, complexity) {
-                if (serviceItem.dataset.price) {
-                    return parseInt(serviceItem.dataset.price);
-                } else if (serviceItem.dataset.prices) {
-                    const prices = JSON.parse(serviceItem.dataset.prices);
-                    return prices[complexity] || prices.simple;
-                }
-                return 0;
-            }
-
-            updateServicePrice(serviceItem) {
-                const serviceId = serviceItem.dataset.service;
-                if (this.services.has(serviceId)) {
-                    const service = this.services.get(serviceId);
-                    const complexity = serviceItem.querySelector('.complexity-select').value;
-                    const newPrice = this.calculateServicePrice(serviceItem, complexity);
-                    
-                    service.price = newPrice;
-                    service.complexity = complexity;
-                    service.element.querySelector('.service-price').textContent = this.formatPrice(newPrice);
-                }
-            }
-
-            updateTotal() {
-                let subtotal = 0;
-                let additionalCost = 0;
-
-                // Calculate services cost
-                this.services.forEach(service => {
-                    subtotal += service.price * service.quantity;
-                });
-
-                // Calculate additional options
-                const rushCheckbox = document.querySelector('.rush-checkbox');
-                if (rushCheckbox && rushCheckbox.checked) {
-                    additionalCost += subtotal * 0.25;
-                }
-
-                const corrections = parseInt(document.querySelector('[data-service="correction"] .quantity-input').value);
-                additionalCost += 150 * corrections;
-
-                const total = subtotal + additionalCost;
-
-                // Update display
-                document.getElementById('subtotal').textContent = this.formatPrice(subtotal);
-                document.getElementById('additional-cost').textContent = this.formatPrice(additionalCost);
-                document.getElementById('total-cost').textContent = this.formatPrice(total);
-                document.getElementById('final-total').textContent = this.formatPrice(total);
-            }
-
-            updateButtonStates() {
-                document.querySelectorAll('.quantity-input').forEach(input => {
-                    const minusBtn = input.previousElementSibling;
-                    if (parseInt(input.value) <= 0) {
-                        minusBtn.disabled = true;
-                    } else {
-                        minusBtn.disabled = false;
-                    }
-                });
-            }
-
-            formatPrice(price) {
-                return new Intl.NumberFormat('ru-RU', {
-                    minimumFractionDigits: 0
-                }).format(price) + ' ₽';
-            }
-
-            resetCalculator() {
-                this.services.clear();
-                
-                // Reset all inputs
-                document.querySelectorAll('.quantity-input').forEach(input => {
-                    input.value = 0;
-                });
-                
-                // Reset complexity selects
-                document.querySelectorAll('.complexity-select').forEach(select => {
-                    select.value = 'simple';
-                });
-                
-                // Reset checkboxes
-                document.querySelectorAll('.rush-checkbox').forEach(checkbox => {
-                    checkbox.checked = false;
-                });
-                
-                // Reset prices display
-                document.querySelectorAll('.service-price').forEach(priceEl => {
-                    const serviceItem = priceEl.closest('.service-item');
-                    const initialPrice = this.calculateServicePrice(serviceItem, 'simple');
-                    priceEl.textContent = this.formatPrice(initialPrice);
-                });
-                
-                this.updateTotal();
-                this.updateButtonStates();
-            }
-        }
-
-        // Initialize calculator when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            new MobilePriceCalculator();
-        });
-
-        // Global function for category toggling
-        function toggleCategory(categoryId) {
-            const calculator = new MobilePriceCalculator();
-            calculator.toggleCategory(categoryId);
-        }
-
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
         // Гамбургер меню
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -2307,24 +448,6 @@
             });
         });
 
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -2336,48 +459,6 @@
                         block: 'start'
                     });
                 }
-            });
-        });
-
-        // Slider initialization
-        $(document).ready(function(){
-            $('.portfolio-slider').slick({
-                dots: true,
-                arrows: false,
-                infinite: true,
-                speed: 500,
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 3000,
-                cssEase: 'cubic-bezier(0.25, 1, 0.5, 1)',
-                centerMode: true,
-                centerPadding: '0px',
-                responsive: [
-                    {
-                        breakpoint: 1024,
-                        settings: {
-                            slidesToShow: 2,
-                            slidesToScroll: 1
-                        }
-                    },
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    }
-                ]
-            });
-
-            // Custom navigation
-            $('.prev-btn').click(function(){
-                $('.portfolio-slider').slick('slickPrev');
-            });
-
-            $('.next-btn').click(function(){
-                $('.portfolio-slider').slick('slickNext');
             });
         });
     </script>
