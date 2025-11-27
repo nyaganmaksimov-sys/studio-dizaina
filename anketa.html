@@ -780,6 +780,18 @@
             transform: translateY(0);
         }
 
+        /* Скрытый контейнер для PDF */
+        #pdf-container {
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+            width: 800px;
+            background: white;
+            color: black;
+            padding: 30px;
+            font-family: Arial, sans-serif;
+        }
+
         /* Responsive */
         @media (min-width: 768px) {
             section {
@@ -1177,6 +1189,9 @@
         </div>
     </footer>
 
+    <!-- Скрытый контейнер для PDF -->
+    <div id="pdf-container"></div>
+
     <!-- Scripts -->
     <script>
         // Header scroll effect
@@ -1260,36 +1275,36 @@
                 return;
             }
             
-            // Создание HTML для PDF
-            const formData = new FormData(document.getElementById('client-form'));
+            // Сбор данных из формы
             const projectTypes = Array.from(document.querySelectorAll('input[name="project-type"]:checked'))
                 .map(cb => cb.nextElementSibling.textContent).join(', ');
             const styles = Array.from(document.querySelectorAll('input[name="style"]:checked'))
                 .map(cb => cb.nextElementSibling.textContent).join(', ');
             
+            // Создание HTML для PDF
             const pdfContent = `
-                <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto;">
-                    <h1 style="color: #FF4D80; text-align: center; margin-bottom: 30px;">АНКЕТА ЗАКАЗЧИКА DIZMAX</h1>
+                <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; color: #000;">
+                    <h1 style="color: #FF4D80; text-align: center; margin-bottom: 30px; font-size: 24px;">АНКЕТА ЗАКАЗЧИКА DIZMAX</h1>
                     
-                    <h2 style="color: #00F0FF; border-bottom: 2px solid #00F0FF; padding-bottom: 10px;">КОНТАКТНАЯ ИНФОРМАЦИЯ</h2>
+                    <h2 style="color: #00F0FF; border-bottom: 2px solid #00F0FF; padding-bottom: 10px; font-size: 18px;">КОНТАКТНАЯ ИНФОРМАЦИЯ</h2>
                     <p><strong>Имя:</strong> ${document.getElementById('name').value}</p>
                     <p><strong>Компания/Бренд:</strong> ${document.getElementById('company').value || 'Не указано'}</p>
                     <p><strong>Email:</strong> ${document.getElementById('email').value}</p>
                     <p><strong>Телефон:</strong> ${document.getElementById('phone').value}</p>
                     <p><strong>Предпочтительный способ связи:</strong> ${document.getElementById('contact-method').options[document.getElementById('contact-method').selectedIndex].text}</p>
                     
-                    <h2 style="color: #00F0FF; border-bottom: 2px solid #00F0FF; padding-bottom: 10px; margin-top: 30px;">ИНФОРМАЦИЯ О ПРОЕКТЕ</h2>
+                    <h2 style="color: #00F0FF; border-bottom: 2px solid #00F0FF; padding-bottom: 10px; margin-top: 30px; font-size: 18px;">ИНФОРМАЦИЯ О ПРОЕКТЕ</h2>
                     <p><strong>Тип проекта:</strong> ${projectTypes || 'Не указано'}</p>
                     <p><strong>Описание проекта:</strong> ${document.getElementById('project-description').value}</p>
                     <p><strong>Целевая аудитория:</strong> ${document.getElementById('target-audience').value || 'Не указано'}</p>
                     <p><strong>Конкуренты/Референсы:</strong> ${document.getElementById('competitors').value || 'Не указано'}</p>
                     
-                    <h2 style="color: #00F0FF; border-bottom: 2px solid #00F0FF; padding-bottom: 10px; margin-top: 30px;">ВИЗУАЛЬНЫЕ ПРЕДПОЧТЕНИЯ</h2>
+                    <h2 style="color: #00F0FF; border-bottom: 2px solid #00F0FF; padding-bottom: 10px; margin-top: 30px; font-size: 18px;">ВИЗУАЛЬНЫЕ ПРЕДПОЧТЕНИЯ</h2>
                     <p><strong>Предпочтительный стиль:</strong> ${styles || 'Не указано'}</p>
                     <p><strong>Цветовые предпочтения:</strong> ${document.getElementById('colors').value || 'Не указано'}</p>
                     <p><strong>Чего следует избегать:</strong> ${document.getElementById('dislikes').value || 'Не указано'}</p>
                     
-                    <h2 style="color: #00F0FF; border-bottom: 2px solid #00F0FF; padding-bottom: 10px; margin-top: 30px;">БЮДЖЕТ И СРОКИ</h2>
+                    <h2 style="color: #00F0FF; border-bottom: 2px solid #00F0FF; padding-bottom: 10px; margin-top: 30px; font-size: 18px;">БЮДЖЕТ И СРОКИ</h2>
                     <p><strong>Примерный бюджет:</strong> ${document.getElementById('budget').options[document.getElementById('budget').selectedIndex].text || 'Не указано'}</p>
                     <p><strong>Желаемые сроки:</strong> ${document.getElementById('deadline').options[document.getElementById('deadline').selectedIndex].text || 'Не указано'}</p>
                     <p><strong>Дополнительная информация:</strong> ${document.getElementById('additional-info').value || 'Не указано'}</p>
@@ -1300,23 +1315,29 @@
                 </div>
             `;
             
-            // Создание элемента для конвертации в PDF
-            const element = document.createElement('div');
-            element.innerHTML = pdfContent;
-            document.body.appendChild(element);
+            // Заполнение контейнера для PDF
+            const pdfContainer = document.getElementById('pdf-container');
+            pdfContainer.innerHTML = pdfContent;
             
             // Настройки для PDF
             const opt = {
                 margin: 10,
                 filename: `Анкета_заказчика_DIZMAX_${document.getElementById('name').value}_${new Date().toISOString().slice(0, 10)}.pdf`,
                 image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                html2canvas: { 
+                    scale: 2,
+                    useCORS: true,
+                    logging: true
+                },
+                jsPDF: { 
+                    unit: 'mm', 
+                    format: 'a4', 
+                    orientation: 'portrait' 
+                }
             };
             
             // Генерация PDF
-            html2pdf().set(opt).from(element).save().then(() => {
-                document.body.removeChild(element);
+            html2pdf().set(opt).from(pdfContainer).save().then(() => {
                 alert('Анкета успешно сохранена в PDF! Теперь вы можете отправить её мне по email или в мессенджере.');
             });
         });
