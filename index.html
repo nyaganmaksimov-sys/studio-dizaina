@@ -725,7 +725,7 @@
             font-size: 0.85rem;
         }
 
-        /* Модальное окно - ОБНОВЛЕННОЕ */
+        /* Модальное окно - ОБНОВЛЕННОЕ С НАВИГАЦИЕЙ */
         .modal {
             display: none;
             position: fixed;
@@ -786,10 +786,45 @@
             border-color: var(--primary);
         }
 
+        /* Кнопки навигации */
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: var(--light);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2001;
+            font-size: 1.2rem;
+        }
+
+        .modal-nav:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
         .modal-caption {
             padding: 20px;
             background: var(--dark);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
         }
 
         .modal-caption h3 {
@@ -802,6 +837,17 @@
             color: var(--text-gray);
             font-size: 0.95rem;
             line-height: 1.4;
+        }
+
+        .modal-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 15px;
         }
 
         @keyframes fadeIn {
@@ -855,6 +901,20 @@
             
             .modal-content {
                 width: 70%;
+            }
+            
+            .modal-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .modal-prev {
+                left: 10px;
+            }
+            
+            .modal-next {
+                right: 10px;
             }
         }
 
@@ -918,6 +978,18 @@
                 width: 40px;
                 height: 40px;
             }
+            
+            .modal-nav {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+            
+            .modal-counter {
+                position: static;
+                display: inline-block;
+                margin-top: 10px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -936,9 +1008,13 @@
             .modal-caption p {
                 font-size: 0.85rem;
             }
+            
+            .modal-nav {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
         }
-
-        /* Slick slider styles - УДАЛЕНО, ТАК КАК СЛАЙДЕР БОЛЬШЕ НЕ ИСПОЛЬЗУЕТСЯ */
     </style>
 </head>
 <body>
@@ -1269,14 +1345,21 @@
         </div>
     </footer>
 
-    <!-- Модальное окно для проектов - ОБНОВЛЕННОЕ -->
+    <!-- Модальное окно для проектов - ОБНОВЛЕННОЕ С НАВИГАЦИЕЙ -->
     <div id="projectModal" class="modal">
         <span class="close-modal">&times;</span>
+        <div class="modal-nav modal-prev">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="modal-nav modal-next">
+            <i class="fas fa-chevron-right"></i>
+        </div>
         <div class="modal-content">
             <img class="modal-image" id="modalImage" src="" alt="">
             <div class="modal-caption">
                 <h3 id="modalTitle"></h3>
                 <p id="modalDescription"></p>
+                <div class="modal-counter" id="modalCounter"></div>
             </div>
         </div>
     </div>
@@ -1346,27 +1429,69 @@
             });
         });
 
-        // Модальное окно для проектов - ОБНОВЛЕННЫЙ КОД
+        // Модальное окно для проектов - ОБНОВЛЕННЫЙ КОД С НАВИГАЦИЕЙ
         const modal = document.getElementById('projectModal');
         const modalImage = document.getElementById('modalImage');
         const modalTitle = document.getElementById('modalTitle');
         const modalDescription = document.getElementById('modalDescription');
+        const modalCounter = document.getElementById('modalCounter');
         const closeModal = document.querySelector('.close-modal');
+        const prevBtn = document.querySelector('.modal-prev');
+        const nextBtn = document.querySelector('.modal-next');
+
+        let currentProjectIndex = 0;
+        let projects = [];
+
+        // Собираем все проекты в массив
+        function initProjects() {
+            projects = Array.from(document.querySelectorAll('.portfolio-item')).map(item => ({
+                image: item.getAttribute('data-image'),
+                title: item.getAttribute('data-title'),
+                description: item.getAttribute('data-description')
+            }));
+        }
+
+        // Показываем проект по индексу
+        function showProject(index) {
+            if (projects.length === 0) return;
+            
+            // Корректируем индекс для циклической навигации
+            if (index >= projects.length) {
+                index = 0;
+            } else if (index < 0) {
+                index = projects.length - 1;
+            }
+            
+            currentProjectIndex = index;
+            const project = projects[currentProjectIndex];
+            
+            modalImage.src = project.image;
+            modalTitle.textContent = project.title;
+            modalDescription.textContent = project.description;
+            modalCounter.textContent = `${currentProjectIndex + 1} / ${projects.length}`;
+        }
 
         // Открытие модального окна при клике на проект
-        document.querySelectorAll('.portfolio-item').forEach(item => {
+        document.querySelectorAll('.portfolio-item').forEach((item, index) => {
             item.addEventListener('click', function() {
-                const imageSrc = this.getAttribute('data-image');
-                const title = this.getAttribute('data-title');
-                const description = this.getAttribute('data-description');
-                
-                modalImage.src = imageSrc;
-                modalTitle.textContent = title;
-                modalDescription.textContent = description;
-                
+                initProjects();
+                currentProjectIndex = index;
+                showProject(currentProjectIndex);
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
             });
+        });
+
+        // Навигация вперед
+        nextBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            showProject(currentProjectIndex + 1);
+        });
+
+        // Навигация назад
+        prevBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            showProject(currentProjectIndex - 1);
         });
 
         // Закрытие модального окна
@@ -1383,13 +1508,22 @@
             }
         });
 
-        // Закрытие модального окна клавишей ESC
+        // Навигация клавишами клавиатуры
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.style.display === 'block') {
-                modal.style.display = 'none';
-                document.body.style.overflow = '';
+            if (modal.style.display === 'block') {
+                if (e.key === 'Escape') {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                } else if (e.key === 'ArrowRight') {
+                    showProject(currentProjectIndex + 1);
+                } else if (e.key === 'ArrowLeft') {
+                    showProject(currentProjectIndex - 1);
+                }
             }
         });
+
+        // Инициализация проектов при загрузке страницы
+        document.addEventListener('DOMContentLoaded', initProjects);
     </script>
 </body>
 </html>
