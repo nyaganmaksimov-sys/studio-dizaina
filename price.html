@@ -153,7 +153,7 @@
 
         section {
             position: relative;
-            padding: 100px 0;
+            padding: 80px 0;
         }
 
         h1, h2, h3, h4 {
@@ -179,20 +179,22 @@
             font-family: 'Syne', sans-serif;
         }
 
-        /* Hero Section */
+        /* Hero Section - переработанная */
         .hero {
-            min-height: 60vh;
+            min-height: 40vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
-            padding: 120px 0 60px;
+            padding: 100px 0 40px;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
             text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .hero-title {
@@ -202,20 +204,19 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 40px;
+            font-size: 1.1rem;
             color: var(--text-gray);
+            line-height: 1.4;
         }
 
-        /* Категории навигации */
+        /* Категории навигации - переработанная */
         .categories-nav {
             background: var(--dark-gray);
-            padding: 30px 0;
+            padding: 20px 0;
             position: sticky;
             top: 80px;
             z-index: 100;
@@ -225,25 +226,37 @@
 
         .categories-container {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+        }
+
+        .categories-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding-bottom: 5px;
+        }
+
+        .categories-scroll::-webkit-scrollbar {
+            display: none;
         }
 
         .category-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text-gray);
-            padding: 12px 24px;
-            border-radius: 25px;
+            padding: 10px 18px;
+            border-radius: 20px;
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .category-btn:hover,
@@ -251,7 +264,57 @@
             background: var(--primary);
             color: var(--dark);
             border-color: var(--primary);
-            transform: translateY(-2px);
+        }
+
+        /* Гамбургер меню для мобильной версии */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            margin-left: 15px;
+        }
+
+        .mobile-categories {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.98);
+            z-index: 2000;
+            padding: 100px 20px 40px;
+            overflow-y: auto;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .mobile-categories.active {
+            display: flex;
+        }
+
+        .mobile-categories .category-btn {
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            margin-bottom: 10px;
+            padding: 15px;
+            font-size: 1rem;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         /* Секции прайса */
@@ -500,10 +563,26 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .categories-container {
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: 10px;
+            .hero {
+                min-height: 30vh;
+                padding: 90px 0 30px;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .categories-nav {
+                top: 70px;
+                padding: 15px 0;
+            }
+
+            .categories-scroll {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
             }
 
             .price-table {
@@ -526,11 +605,6 @@
                 margin: 20px;
                 padding: 40px 20px;
             }
-
-            .hero {
-                min-height: 50vh;
-                padding: 100px 0 40px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -546,6 +620,10 @@
 
             .additional-info {
                 padding: 25px;
+            }
+            
+            .hero {
+                padding: 80px 0 20px;
             }
         }
     </style>
@@ -582,15 +660,35 @@
     <!-- Навигация по категориям -->
     <div class="categories-nav">
         <div class="categories-container">
-            <a href="#visiting-cards" class="category-btn">🎴 Визитки</a>
-            <a href="#branding" class="category-btn">🎭 Фирменный стиль</a>
-            <a href="#polygraphy" class="category-btn">📢 Полиграфия</a>
-            <a href="#booklets" class="category-btn">📒 Буклеты</a>
-            <a href="#calendars" class="category-btn">📅 Календари</a>
-            <a href="#outdoor" class="category-btn">🏢 Наружная реклама</a>
-            <a href="#web" class="category-btn">💻 Веб & Соцсети</a>
-            <a href="#additional" class="category-btn">⚡ Дополнительно</a>
+            <div class="categories-scroll">
+                <a href="#visiting-cards" class="category-btn">🎴 Визитки</a>
+                <a href="#branding" class="category-btn">🎭 Фирменный стиль</a>
+                <a href="#polygraphy" class="category-btn">📢 Полиграфия</a>
+                <a href="#booklets" class="category-btn">📒 Буклеты</a>
+                <a href="#calendars" class="category-btn">📅 Календари</a>
+                <a href="#outdoor" class="category-btn">🏢 Наружная реклама</a>
+                <a href="#web" class="category-btn">💻 Веб & Соцсети</a>
+                <a href="#additional" class="category-btn">⚡ Дополнительно</a>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
+    </div>
+
+    <!-- Мобильное меню категорий -->
+    <div class="mobile-categories" id="mobileCategories">
+        <button class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#visiting-cards" class="category-btn">🎴 Визитки</a>
+        <a href="#branding" class="category-btn">🎭 Фирменный стиль</a>
+        <a href="#polygraphy" class="category-btn">📢 Полиграфия</a>
+        <a href="#booklets" class="category-btn">📒 Буклеты</a>
+        <a href="#calendars" class="category-btn">📅 Календари</a>
+        <a href="#outdoor" class="category-btn">🏢 Наружная реклама</a>
+        <a href="#web" class="category-btn">💻 Веб & Соцсети</a>
+        <a href="#additional" class="category-btn">⚡ Дополнительно</a>
     </div>
 
     <!-- Основной контент -->
@@ -1060,6 +1158,9 @@
                         top: offsetTop,
                         behavior: 'smooth'
                     });
+                    
+                    // Закрываем мобильное меню после клика
+                    document.getElementById('mobileCategories').classList.remove('active');
                 }
             });
         });
@@ -1111,6 +1212,26 @@
             if (yearElement) {
                 const currentYear = new Date().getFullYear();
                 yearElement.innerHTML = yearElement.innerHTML.replace('2024', currentYear);
+            }
+        });
+
+        // Мобильное меню
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileCategories = document.getElementById('mobileCategories');
+        const closeMenu = document.getElementById('closeMenu');
+
+        mobileMenuToggle.addEventListener('click', function() {
+            mobileCategories.classList.add('active');
+        });
+
+        closeMenu.addEventListener('click', function() {
+            mobileCategories.classList.remove('active');
+        });
+
+        // Закрытие меню при клике вне его области
+        document.addEventListener('click', function(e) {
+            if (!mobileCategories.contains(e.target) && e.target !== mobileMenuToggle) {
+                mobileCategories.classList.remove('active');
             }
         });
     </script>
