@@ -125,23 +125,25 @@
             100% { background-position: 0% 50%; }
         }
 
+        /* Уменьшенная кнопка "На главную" */
         .back-btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             color: var(--light);
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
-            padding: 10px 20px;
+            padding: 8px 16px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
+            border-radius: 20px;
+            font-size: 0.85rem;
         }
 
         .back-btn:hover {
             border-color: var(--primary);
             color: var(--primary);
-            transform: translateX(-5px);
+            transform: translateX(-3px);
         }
 
         /* Основные стили секций */
@@ -153,7 +155,7 @@
 
         section {
             position: relative;
-            padding: 80px 0;
+            padding: 100px 0;
         }
 
         h1, h2, h3, h4 {
@@ -179,22 +181,20 @@
             font-family: 'Syne', sans-serif;
         }
 
-        /* Hero Section - переработанная */
+        /* Hero Section */
         .hero {
-            min-height: 40vh;
+            min-height: 60vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
-            padding: 100px 0 40px;
+            padding: 120px 0 60px;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
             text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
         }
 
         .hero-title {
@@ -204,19 +204,20 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .hero-subtitle {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
             color: var(--text-gray);
-            line-height: 1.4;
         }
 
-        /* Категории навигации - переработанная */
+        /* Категории навигации */
         .categories-nav {
             background: var(--dark-gray);
-            padding: 20px 0;
+            padding: 30px 0;
             position: sticky;
             top: 80px;
             z-index: 100;
@@ -226,37 +227,25 @@
 
         .categories-container {
             display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            position: relative;
-        }
-
-        .categories-scroll {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            padding-bottom: 5px;
-        }
-
-        .categories-scroll::-webkit-scrollbar {
-            display: none;
         }
 
         .category-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text-gray);
-            padding: 10px 11px;
-            border-radius: 20px;
+            padding: 12px 24px;
+            border-radius: 25px;
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             white-space: nowrap;
-            flex-shrink: 0;
         }
 
         .category-btn:hover,
@@ -264,57 +253,7 @@
             background: var(--primary);
             color: var(--dark);
             border-color: var(--primary);
-        }
-
-        /* Гамбургер меню для мобильной версии */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--light);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 5px;
-            margin-left: 15px;
-        }
-
-        .mobile-categories {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 10, 10, 0.98);
-            z-index: 2000;
-            padding: 100px 20px 40px;
-            overflow-y: auto;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .mobile-categories.active {
-            display: flex;
-        }
-
-        .mobile-categories .category-btn {
-            width: 100%;
-            max-width: 300px;
-            text-align: center;
-            margin-bottom: 10px;
-            padding: 15px;
-            font-size: 1rem;
-        }
-
-        .close-menu {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            background: none;
-            border: none;
-            color: var(--light);
-            font-size: 1.5rem;
-            cursor: pointer;
+            transform: translateY(-2px);
         }
 
         /* Секции прайса */
@@ -563,26 +502,10 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero {
-                min-height: 30vh;
-                padding: 90px 0 30px;
-            }
-            
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .categories-nav {
-                top: 70px;
-                padding: 15px 0;
-            }
-
-            .categories-scroll {
-                display: none;
-            }
-
-            .mobile-menu-toggle {
-                display: block;
+            .categories-container {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
             }
 
             .price-table {
@@ -605,6 +528,18 @@
                 margin: 20px;
                 padding: 40px 20px;
             }
+
+            .hero {
+                min-height: 50vh;
+                padding: 100px 0 40px;
+            }
+
+            /* Еще больше уменьшаем кнопку на мобильных */
+            .back-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+                gap: 6px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -621,9 +556,11 @@
             .additional-info {
                 padding: 25px;
             }
-            
-            .hero {
-                padding: 80px 0 20px;
+
+            /* Минимальный размер кнопки */
+            .back-btn {
+                padding: 5px 10px;
+                font-size: 0.75rem;
             }
         }
     </style>
@@ -660,35 +597,15 @@
     <!-- Навигация по категориям -->
     <div class="categories-nav">
         <div class="categories-container">
-            <div class="categories-scroll">
-                <a href="#visiting-cards" class="category-btn">🎴 Визитки</a>
-                <a href="#branding" class="category-btn">🎭 Фирменный стиль</a>
-                <a href="#polygraphy" class="category-btn">📢 Полиграфия</a>
-                <a href="#booklets" class="category-btn">📒 Буклеты</a>
-                <a href="#calendars" class="category-btn">📅 Календари</a>
-                <a href="#outdoor" class="category-btn">🏢 Наружная реклама</a>
-                <a href="#web" class="category-btn">💻 Веб & Соцсети</a>
-                <a href="#additional" class="category-btn">⚡ Дополнительно</a>
-            </div>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                <i class="fas fa-bars"></i>
-            </button>
+            <a href="#visiting-cards" class="category-btn">🎴 Визитки</a>
+            <a href="#branding" class="category-btn">🎭 Фирменный стиль</a>
+            <a href="#polygraphy" class="category-btn">📢 Полиграфия</a>
+            <a href="#booklets" class="category-btn">📒 Буклеты</a>
+            <a href="#calendars" class="category-btn">📅 Календари</a>
+            <a href="#outdoor" class="category-btn">🏢 Наружная реклама</a>
+            <a href="#web" class="category-btn">💻 Веб & Соцсети</a>
+            <a href="#additional" class="category-btn">⚡ Дополнительно</a>
         </div>
-    </div>
-
-    <!-- Мобильное меню категорий -->
-    <div class="mobile-categories" id="mobileCategories">
-        <button class="close-menu" id="closeMenu">
-            <i class="fas fa-times"></i>
-        </button>
-        <a href="#visiting-cards" class="category-btn">🎴 Визитки</a>
-        <a href="#branding" class="category-btn">🎭 Фирменный стиль</a>
-        <a href="#polygraphy" class="category-btn">📢 Полиграфия</a>
-        <a href="#booklets" class="category-btn">📒 Буклеты</a>
-        <a href="#calendars" class="category-btn">📅 Календари</a>
-        <a href="#outdoor" class="category-btn">🏢 Наружная реклама</a>
-        <a href="#web" class="category-btn">💻 Веб & Соцсети</a>
-        <a href="#additional" class="category-btn">⚡ Дополнительно</a>
     </div>
 
     <!-- Основной контент -->
@@ -1007,7 +924,7 @@
                     <tr>
                         <td>
                             <div class="service-name">Изготовление веб сайтов</div>
-                        <div class="service-description">Лендинги, интернет-магазины</div>
+                            <div class="service-description">Лендинги, интернет-магазины</div>
                         </td>
                         <td class="price-column price-simple">От 10 000 ₽</td>
                         <td class="price-column">—</td>
@@ -1158,9 +1075,6 @@
                         top: offsetTop,
                         behavior: 'smooth'
                     });
-                    
-                    // Закрываем мобильное меню после клика
-                    document.getElementById('mobileCategories').classList.remove('active');
                 }
             });
         });
@@ -1212,26 +1126,6 @@
             if (yearElement) {
                 const currentYear = new Date().getFullYear();
                 yearElement.innerHTML = yearElement.innerHTML.replace('2024', currentYear);
-            }
-        });
-
-        // Мобильное меню
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const mobileCategories = document.getElementById('mobileCategories');
-        const closeMenu = document.getElementById('closeMenu');
-
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileCategories.classList.add('active');
-        });
-
-        closeMenu.addEventListener('click', function() {
-            mobileCategories.classList.remove('active');
-        });
-
-        // Закрытие меню при клике вне его области
-        document.addEventListener('click', function(e) {
-            if (!mobileCategories.contains(e.target) && e.target !== mobileMenuToggle) {
-                mobileCategories.classList.remove('active');
             }
         });
     </script>
