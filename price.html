@@ -214,10 +214,10 @@
             color: var(--text-gray);
         }
 
-        /* Категории навигации */
+        /* Категории навигации - В ОДНУ СТРОКУ */
         .categories-nav {
             background: var(--dark-gray);
-            padding: 30px 0;
+            padding: 20px 0;
             position: sticky;
             top: 80px;
             z-index: 100;
@@ -228,24 +228,34 @@
         .categories-container {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
+            align-items: center;
+            gap: 10px;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .categories-container::-webkit-scrollbar {
+            display: none;
         }
 
         .category-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text-gray);
-            padding: 12px 24px;
-            border-radius: 25px;
+            padding: 10px 18px;
+            border-radius: 20px;
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .category-btn:hover,
@@ -504,8 +514,12 @@
         @media (max-width: 768px) {
             .categories-container {
                 justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: 10px;
+                padding-bottom: 5px;
+            }
+
+            .category-btn {
+                padding: 8px 14px;
+                font-size: 0.8rem;
             }
 
             .price-table {
@@ -562,6 +576,17 @@
                 padding: 5px 10px;
                 font-size: 0.75rem;
             }
+
+            .category-btn {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .categories-container {
+                justify-content: flex-start;
+            }
         }
     </style>
 </head>
@@ -594,7 +619,7 @@
         </div>
     </section>
 
-    <!-- Навигация по категориям -->
+    <!-- Навигация по категориям - В ОДНУ СТРОКУ -->
     <div class="categories-nav">
         <div class="categories-container">
             <a href="#visiting-cards" class="category-btn">🎴 Визитки</a>
