@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчет по аудиту convoitee.com | Студия DizMax</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #7c4dff;
+            --primary-dark: #5e35b1;
+            --secondary: #ff4081;
+            --dark: #2d2b55;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --info: #2196f3;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+
+        .logo-text h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+
+        .logo-text p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .report-meta {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .meta-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border-top: 5px solid var(--primary);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-danger {
+            border-top-color: var(--danger);
+        }
+
+        .card-warning {
+            border-top-color: var(--warning);
+        }
+
+        .card-success {
+            border-top-color: var(--success);
+        }
+
+        .card-info {
+            border-top-color: var(--info);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .icon-danger {
+            background-color: var(--danger);
+        }
+
+        .icon-warning {
+            background-color: var(--warning);
+        }
+
+        .icon-success {
+            background-color: var(--success);
+        }
+
+        .icon-info {
+            background-color: var(--info);
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .card-subtitle {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            background: #f8f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid var(--primary);
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .problem-list, .solution-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .problem-list li, .solution-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .problem-list li:last-child, .solution-list li:last-child {
+            border-bottom: none;
+        }
+
+        .problem-list i {
+            color: var(--danger);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .solution-list i {
+            color: var(--success);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .priority-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .badge-critical {
+            background-color: rgba(244, 67, 54, 0.15);
+            color: var(--danger);
+        }
+
+        .badge-high {
+            background-color: rgba(255, 152, 0, 0.15);
+            color: var(--warning);
+        }
+
+        .badge-medium {
+            background-color: rgba(33, 150, 243, 0.15);
+            color: var(--info);
+        }
+
+        /* Timeline */
+        .timeline {
+            margin-top: 20px;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 40px;
+            bottom: -25px;
+            width: 2px;
+            background: #e0e0e0;
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-marker {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-right: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-top: 10px;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .timeline-desc {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-top: 1px solid #e0e0e0;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .logo {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>DizMax Studio</h1>
+                        <p>Аналитика и стратегия цифрового роста</p>
+                    </div>
+                </div>
+                <h2>Полный аудит и стратегия продвижения</h2>
+                <h1 style="margin-top: 10px; font-size: 2.5rem;">convoitee.com</h1>
+                <p style="margin-top: 15px; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    Магазин нижнего белья премиум-класса. Анализ проведен на основе данных PR-CY и технического аудита.
+                </p>
+                
+                <div class="report-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Дата анализа</div>
+                        <div class="meta-value">05.12.2025</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Общая оценка сайта</div>
+                        <div class="meta-value">78.79 / 100</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Возраст домена</div>
+                        <div class="meta-value">8 лет</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Индексация Яндекс</div>
+                        <div class="meta-value">23 страницы</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Grid -->
+        <div class="content-grid">
+            <!-- Card 1: Критические проблемы -->
+            <div class="card card-danger">
+                <div class="card-header">
+                    <div class="card-icon icon-danger">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Критические проблемы</h3>
+                        <p class="card-subtitle">Требуют немедленного решения</p>
+                    </div>
+                </div>
+                
+                <ul class="problem-list">
+                    <li>
+                        <i class="fas fa-times-circle"></i>
+                        <div>
+                            <strong>Скорость загрузки 11.8 сек</strong>
+                            <span class="priority-badge badge-critical">КРИТИЧЕСКО</span>
+                            <p>Приводит к высокому проценту отказов (более 70%) и негативно влияет на ранжирование.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-times-circle"></i>
+                        <div>
+                            <strong>Почти нулевая видимость в поиске</strong>
+                            <span class="priority-badge badge-critical">КРИТИЧЕСКО</span>
+                            <p>Нет данных по Яндекс ИКС. Всего 23 страницы в индексе Яндекс.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-times-circle"></i>
+                        <div>
+                            <strong>Слабая SEO-оптимизация</strong>
+                            <span class="priority-badge badge-high">ВЫСОКИЙ ПРИОРИТЕТ</span>
+                            <p>Плохие Title/Description, мало текста (785 символов на главной), нет микроразметки Schema.org.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-times-circle"></i>
+                        <div>
+                            <strong>Минимальная ссылочная масса</strong>
+                            <span class="priority-badge badge-high">ВЫСОКИЙ ПРИОРИТЕТ</span>
+                            <p>Только 75 ссылок с 2 доменов. Естественного роста ссылочной массы нет.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Card 2: Технический анализ -->
+            <div class="card card-info">
+                <div class="card-header">
+                    <div class="card-icon icon-info">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Технический анализ</h3>
+                        <p class="card-subtitle">Инфраструктура сайта</p>
+                    </div>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">200</div>
+                        <div class="stat-label">Код ответа сервера</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">HTTPS</div>
+                        <div class="stat-label">SSL-сертификат</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">WordPress</div>
+                        <div class="stat-label">CMS</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">Beget</div>
+                        <div class="stat-label">Хостинг</div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px; color: var(--gray);">
+                    <strong>Положительные моменты:</strong> Старый домен (8 лет), корректные редиректы, наличие robots.txt и sitemap, отсутствие вирусов.
+                </p>
+            </div>
+
+            <!-- Card 3: Рекомендации по продвижению -->
+            <div class="card card-success">
+                <div class="card-header">
+                    <div class="card-icon icon-success">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div>
+                        <h3 class="card-title">Ключевые рекомендации</h3>
+                        <p class="card-subtitle">Приоритетные действия</p>
+                    </div>
+                </div>
+                
+                <ul class="solution-list">
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Оптимизация скорости</strong>
+                            <p>Сжать изображения, включить кэширование, минифицировать код. Цель: < 3 секунд.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Базовая SEO-настройка</strong>
+                            <p>Уникальные Title/Description для всех страниц, добавление текстов, микроразметка.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Запуск контент-маркетинга</strong>
+                            <p>Создание блога с полезными статьями о белье, размерах, уходе за тканями.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Активация социальных сетей</strong>
+                            <p>Instagram и Pinterest как основные каналы для визуального контента.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Card 4: План действий -->
+            <div class="card card-warning">
+                <div class="card-header">
+                    <div class="card-icon icon-warning">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div>
+                        <h3 class="card-title">План действий на 6 месяцев</h3>
+                        <p class="card-subtitle">Поэтапная стратегия</p>
+                    </div>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1-2</div>
+                        <div class="timeline-content">
+                            <h4 class="timeline-title">Техническая база и SEO</h4>
+                            <p class="timeline-desc">Оптимизация скорости, базовая SEO-настройка, семантическое ядро.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2-4</div>
+                        <div class="timeline-content">
+                            <h4 class="timeline-title">Контент и блог</h4>
+                            <p class="timeline-desc">Запуск блога, написание 8-10 статей, оптимизация коммерческих страниц.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">3-6</div>
+                        <div class="timeline-content">
+                            <h4 class="timeline-title">Ссылки и SMM</h4>
+                            <p class="timeline-desc">Работа с блогерами, линкбилдинг, активное ведение соцсетей.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Card -->
+        <div class="card" style="margin-bottom: 30px;">
+            <div class="card-header">
+                <div class="card-icon" style="background: linear-gradient(135deg, #7c4dff, #ff4081);">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div>
+                    <h3 class="card-title">Ожидаемые результаты</h3>
+                    <p class="card-subtitle">После реализации стратегии за 6-12 месяцев</p>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">3x</div>
+                    <div class="stat-label">Увеличение органического трафика</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">< 3с</div>
+                    <div class="stat-label">Скорость загрузки</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">50+</div>
+                    <div class="stat-label">Статей в блоге</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">1000+</div>
+                    <div class="stat-label">Подписчиков в соцсетях</div>
+                </div>
+            </div>
+            
+            <p style="margin-top: 20px; padding: 15px; background: #f0f7ff; border-radius: 8px; border-left: 4px solid var(--info);">
+                <strong>Заключение:</strong> Convoitee.com имеет хороший потенциал благодаря нише и возрасту домена. 
+                При системной работе над SEO и контентом, сайт сможет выйти в топ по низко- и среднечастотным запросам 
+                в течение 6-12 месяцев, что обеспечит стабильный рост продаж.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Полный отчет подготовлен студией <strong>DizMax</strong></p>
+            <p>На основе данных PR-CY и комплексного аудита от 05.12.2025</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@dizmax.ru</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+7 (XXX) XXX-XX-XX</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <span>www.dizmax.ru</span>
+                </div>
+            </div>
+            
+            <p style="margin-top: 20px; font-size: 0.85rem; color: #aaa;">
+                © 2025 DizMax Studio. Все права защищены. Отчет предназначен для внутреннего использования.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Анимация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Анимация появления карточек
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+            
+            // Анимация статистики
+            const statValues = document.querySelectorAll('.stat-value');
+            statValues.forEach(stat => {
+                const originalText = stat.textContent;
+                stat.textContent = '0';
+                
+                setTimeout(() => {
+                    let counter = 0;
+                    const target = isNaN(originalText) ? originalText : parseFloat(originalText);
+                    
+                    if (typeof target === 'number') {
+                        const increment = target / 30;
+                        const timer = setInterval(() => {
+                            counter += increment;
+                            if (counter >= target) {
+                                counter = target;
+                                clearInterval(timer);
+                            }
+                            stat.textContent = target < 10 ? counter.toFixed(1) : Math.round(counter);
+                        }, 50);
+                    } else {
+                        setTimeout(() => {
+                            stat.textContent = originalText;
+                        }, 500);
+                    }
+                }, 800);
+            });
+        });
+    </script>
+</body>
+</html>
